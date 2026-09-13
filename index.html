@@ -476,8 +476,7 @@
       left: 0;
       right: 0;
       width: 100%;
-      aspect-ratio: 943 / 265;
-      max-height: 150px;
+      height: 140px;
       z-index: 60;
       pointer-events: none;
     }
@@ -492,29 +491,31 @@
       background-position: center bottom;
       display: flex;
       align-items: center;
-      justify-content: space-evenly;
-      padding: 0 16px;
+      justify-content: center;
+      gap: 0;
+      padding: 0 8px;
       pointer-events: auto;
     }
 
     .nav-btn {
       position: relative;
-      width: 84px;
-      height: 84px;
+      flex: 1;
+      max-width: 92px;
+      height: 92px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       transition: transform 0.15s;
       background: none; border: none; padding: 0;
-      flex-shrink: 0;
     }
     .nav-btn:active { transform: scale(0.93); }
 
     .nav-btn.center {
-      width: 118px;
-      height: 118px;
-      margin-top: -58px;
+      flex: 1.4;
+      max-width: 130px;
+      height: 122px;
+      margin-top: -56px;
       z-index: 3;
     }
 
@@ -529,7 +530,6 @@
       transition: filter 0.2s;
     }
 
-    /* Активна / неактивна */
     .nav-btn[data-tab="tasks"] .nav-btn-bg {
       background-image: url('assets/nav_tasks.png');
     }
@@ -689,18 +689,18 @@
 
     /* ============== АДАПТАЦІЯ ============== */
     @media (max-width: 420px) {
-      .bottom-nav { max-height: 130px; }
-      .bottom-nav-inner { padding: 0 10px; }
-      .nav-btn { width: 72px; height: 72px; }
-      .nav-btn.center { width: 100px; height: 100px; margin-top: -50px; }
-      .content { padding: 0 12px 145px; }
+      .bottom-nav { height: 125px; }
+      .bottom-nav-inner { padding: 0 6px; }
+      .nav-btn { height: 80px; max-width: 82px; }
+      .nav-btn.center { height: 108px; max-width: 112px; margin-top: -50px; }
+      .content { padding: 0 12px 140px; }
     }
 
     @media (max-width: 360px) {
-      .bottom-nav { max-height: 115px; }
-      .bottom-nav-inner { padding: 0 6px; }
-      .nav-btn { width: 62px; height: 62px; }
-      .nav-btn.center { width: 86px; height: 86px; margin-top: -44px; }
+      .bottom-nav { height: 115px; }
+      .bottom-nav-inner { padding: 0 4px; }
+      .nav-btn { height: 72px; max-width: 72px; }
+      .nav-btn.center { height: 96px; max-width: 100px; margin-top: -44px; }
       .content { padding: 0 12px 130px; }
     }
   </style>
