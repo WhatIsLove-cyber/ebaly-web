@@ -233,7 +233,7 @@
       overflow-y: auto;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
-      padding: 0 12px 160px;
+      padding: 0 12px 200px;
       position: relative;
     }
     .content.no-scroll {
@@ -476,7 +476,7 @@
       left: 0;
       right: 0;
       width: 100%;
-      height: 140px;
+      height: 180px;
       z-index: 60;
       pointer-events: none;
     }
@@ -493,15 +493,15 @@
       align-items: center;
       justify-content: center;
       gap: 0;
-      padding: 0 8px;
+      padding: 0 4px;
       pointer-events: auto;
     }
 
     .nav-btn {
       position: relative;
       flex: 1;
-      max-width: 92px;
-      height: 92px;
+      max-width: 130px;
+      height: 130px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -513,9 +513,9 @@
 
     .nav-btn.center {
       flex: 1.4;
-      max-width: 130px;
-      height: 122px;
-      margin-top: -56px;
+      max-width: 175px;
+      height: 175px;
+      margin-top: -80px;
       z-index: 3;
     }
 
@@ -689,19 +689,19 @@
 
     /* ============== АДАПТАЦІЯ ============== */
     @media (max-width: 420px) {
-      .bottom-nav { height: 125px; }
-      .bottom-nav-inner { padding: 0 6px; }
-      .nav-btn { height: 80px; max-width: 82px; }
-      .nav-btn.center { height: 108px; max-width: 112px; margin-top: -50px; }
-      .content { padding: 0 12px 140px; }
+      .bottom-nav { height: 160px; }
+      .bottom-nav-inner { padding: 0 4px; }
+      .nav-btn { height: 110px; max-width: 110px; }
+      .nav-btn.center { height: 150px; max-width: 150px; margin-top: -68px; }
+      .content { padding: 0 12px 180px; }
     }
 
     @media (max-width: 360px) {
-      .bottom-nav { height: 115px; }
-      .bottom-nav-inner { padding: 0 4px; }
-      .nav-btn { height: 72px; max-width: 72px; }
-      .nav-btn.center { height: 96px; max-width: 100px; margin-top: -44px; }
-      .content { padding: 0 12px 130px; }
+      .bottom-nav { height: 145px; }
+      .bottom-nav-inner { padding: 0 2px; }
+      .nav-btn { height: 100px; max-width: 100px; }
+      .nav-btn.center { height: 138px; max-width: 138px; margin-top: -62px; }
+      .content { padding: 0 12px 165px; }
     }
   </style>
 </head>
@@ -823,7 +823,6 @@
 
     <div class="content no-scroll" id="content">
 
-      <!-- ГОЛОВНА -->
       <div id="tab-home">
         <div class="offline-banner" id="offline-banner">
           <div class="offline-title">💤 Поки тебе не було</div>
@@ -855,7 +854,6 @@
         </div>
       </div>
 
-      <!-- ЗАВДАННЯ -->
       <div id="tab-tasks" class="hidden">
         <div class="section-title"><span>🔥 Службові завдання</span><span class="count" id="count-normal">0</span></div>
         <div id="tasks-normal"></div>
@@ -864,7 +862,6 @@
         <div id="tasks-meme"></div>
       </div>
 
-      <!-- СПОРЯДЖЕННЯ -->
       <div id="tab-inventory" class="hidden">
         <div class="section-title"><span>⚡ Потужність</span></div>
         <div style="text-align:center; font-size:32px; font-weight:700; color:#6ba8ff; margin:12px 0;" id="inventory-power">0</div>
@@ -877,7 +874,6 @@
         <div class="inv-grid" id="inventory-container"></div>
       </div>
 
-      <!-- СУНДУКИ -->
       <div id="tab-chests" class="hidden">
         <div class="section-title"><span>💰 Твій баланс</span></div>
         <div style="text-align:center; font-size:28px; font-weight:700; color:#f5a623; margin:12px 0;" id="chest-balance">0 Е</div>
@@ -885,7 +881,6 @@
         <div id="chests-container"></div>
       </div>
 
-      <!-- КРАФТ -->
       <div id="tab-craft" class="hidden">
         <div class="section-title"><span>⚒ Крафт</span></div>
         <div style="color:#888; font-size:12px; margin-bottom:12px;">
@@ -894,7 +889,6 @@
         <div id="craft-container"></div>
       </div>
 
-      <!-- АДМІН -->
       <div id="admin-block" class="hidden">
         <div class="section-title"><span>👑 Адмін</span></div>
         <button class="admin-btn" id="admin-e">+10000 Е</button>
@@ -905,7 +899,6 @@
 
     </div>
 
-    <!-- НИЖНЯ НАВІГАЦІЯ -->
     <div class="bottom-nav">
       <div class="bottom-nav-inner">
         <button class="nav-btn" data-tab="tasks">
