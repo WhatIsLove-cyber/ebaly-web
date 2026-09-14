@@ -153,70 +153,41 @@
       box-shadow: 0 2px 8px rgba(245,166,35,0.3), inset 0 -2px 6px rgba(0,0,0,0.4);
       flex-shrink: 0;
     }
-    .level-badge-icon {
-      font-size: 18px;
-      line-height: 1;
-    }
+    .level-badge-icon { font-size: 18px; line-height: 1; }
     .level-badge-value {
-      font-size: 16px;
-      font-weight: 900;
-      color: #f5a623;
+      font-size: 16px; font-weight: 900; color: #f5a623;
       text-shadow: 0 0 6px rgba(245,166,35,0.7);
       font-variant-numeric: tabular-nums;
     }
 
-    .name-block {
-      flex: 1;
-      text-align: center;
-      min-width: 0;
-    }
+    .name-block { flex: 1; text-align: center; min-width: 0; }
     .name-callsign {
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
+      font-size: 15px; font-weight: 800; letter-spacing: 0.5px;
       background: linear-gradient(135deg, #ffffff 0%, #b8b8b8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .name-rank {
-      font-size: 10px;
-      color: #f5a623;
-      margin-top: 1px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 10px; color: #f5a623; margin-top: 1px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
 
     .coin-badge {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      display: flex; align-items: center; gap: 5px;
       background: linear-gradient(135deg, #1a3a1a, #102a10);
-      border: 2px solid #4caf50;
-      border-radius: 10px;
+      border: 2px solid #4caf50; border-radius: 10px;
       padding: 4px 10px 4px 4px;
       box-shadow: 0 2px 8px rgba(76,175,80,0.3), inset 0 -2px 6px rgba(0,0,0,0.4);
       flex-shrink: 0;
     }
-    .coin-badge-img {
-      width: 26px;
-      height: 26px;
-      object-fit: contain;
-    }
+    .coin-badge-img { width: 26px; height: 26px; object-fit: contain; }
     .coin-badge-fallback {
-      font-size: 20px;
-      line-height: 1;
-      width: 26px;
-      text-align: center;
+      font-size: 20px; line-height: 1; width: 26px; text-align: center;
     }
     .coin-badge-value {
-      font-size: 15px;
-      font-weight: 900;
-      color: #4caf50;
+      font-size: 15px; font-weight: 900; color: #4caf50;
       text-shadow: 0 0 6px rgba(76,175,80,0.7);
       font-variant-numeric: tabular-nums;
     }
@@ -236,9 +207,7 @@
       padding: 0 12px 200px;
       position: relative;
     }
-    .content.no-scroll {
-      overflow-y: hidden;
-    }
+    .content.no-scroll { overflow-y: hidden; }
 
     /* ============== ГОЛОВНА ============== */
     #tab-home {
@@ -260,25 +229,18 @@
 
     .character-frame {
       position: relative;
-      width: 240px;
-      height: 340px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-      margin-bottom: -10px;
+      width: 240px; height: 340px;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2; margin-bottom: -10px;
     }
     .character-frame::after {
       content: "";
       position: absolute;
-      bottom: 6px;
-      left: 50%;
+      bottom: 6px; left: 50%;
       transform: translateX(-50%);
-      width: 160px;
-      height: 16px;
+      width: 160px; height: 16px;
       background: radial-gradient(ellipse at center, rgba(0,0,0,0.75) 0%, transparent 70%);
-      border-radius: 50%;
-      z-index: -1;
+      border-radius: 50%; z-index: -1;
     }
     .character-img {
       width: 100%; height: 100%; object-fit: contain;
@@ -289,26 +251,18 @@
     /* СТАТЫ */
     .stats-column {
       position: absolute;
-      bottom: 8px;
-      left: 4px;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
+      bottom: 8px; left: 4px;
+      display: flex; flex-direction: column; gap: 5px;
       z-index: 5;
       background: rgba(26, 29, 33, 0.7);
-      padding: 8px 10px;
-      border-radius: 10px;
+      padding: 8px 10px; border-radius: 10px;
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(255,255,255,0.08);
     }
     .stat-row {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.6px;
+      display: flex; align-items: center; gap: 5px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.6px;
       text-shadow: 0 0 6px currentColor, 0 1px 2px rgba(0,0,0,0.9);
       text-transform: uppercase;
       transition: transform 0.15s;
@@ -320,60 +274,243 @@
       100% { transform: scale(1); }
     }
     .stat-row .stat-icon {
-      font-size: 13px;
-      line-height: 1;
-      width: 15px;
-      text-align: center;
+      font-size: 13px; line-height: 1; width: 15px; text-align: center;
     }
     .stat-row .stat-num {
-      font-size: 15px;
-      font-weight: 800;
+      font-size: 15px; font-weight: 800;
       font-variant-numeric: tabular-nums;
-      min-width: 26px;
-      text-align: right;
+      min-width: 26px; text-align: right;
     }
     .stat-row .stat-label {
-      font-size: 9px;
-      opacity: 0.9;
-      letter-spacing: 0.8px;
+      font-size: 9px; opacity: 0.9; letter-spacing: 0.8px;
     }
 
     .stat-strength { color: #ff6b6b; }
     .stat-discipline { color: #ffd700; }
     .stat-power { color: #6ba8ff; }
 
-    /* ============== ЗАВДАННЯ ============== */
+    /* ============== ЗАВДАННЯ — ПОКРАЩЕНИЙ СТИЛЬ ============== */
     .section-title {
-      color: #888; font-size: 12px; text-transform: uppercase;
-      margin: 16px 0 8px; letter-spacing: 0.5px;
-      display: flex; justify-content: space-between; align-items: center;
+      color: #f5a623;
+      font-size: 13px;
+      text-transform: uppercase;
+      margin: 20px 0 12px;
+      letter-spacing: 1.5px;
+      font-weight: 800;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-shadow: 0 0 8px rgba(245,166,35,0.4);
     }
-    .section-title .count { color: #555; font-size: 11px; text-transform: none; }
+    .section-title .count {
+      color: #888;
+      font-size: 12px;
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 700;
+    }
     .section-title:first-child { margin-top: 8px; }
 
     .task {
-      background: rgba(42, 46, 51, 0.9);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      padding: 14px; border-radius: 8px;
-      margin-bottom: 8px; border-left: 3px solid #f5a623;
-      cursor: pointer; user-select: none; transition: all 0.15s;
+      background: linear-gradient(135deg, rgba(42, 46, 51, 0.95), rgba(34, 38, 43, 0.95));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 18px 16px;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      border-left: 4px solid #f5a623;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .task::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245,166,35,0.5), transparent);
     }
     .task.meme { border-left-color: #6ba8ff; }
-    .task:active:not(.disabled) { background: rgba(52, 58, 64, 0.95); transform: scale(0.98); }
-    .task.disabled { opacity: 0.5; border-left-color: #4a4a4a; cursor: not-allowed; }
+    .task.meme::before {
+      background: linear-gradient(90deg, transparent, rgba(107,168,255,0.5), transparent);
+    }
+    .task:active:not(.disabled) {
+      background: linear-gradient(135deg, rgba(52, 58, 64, 0.98), rgba(44, 50, 56, 0.98));
+      transform: scale(0.98);
+    }
+    .task.disabled {
+      opacity: 0.5;
+      border-left-color: #4a4a4a;
+      cursor: not-allowed;
+      filter: grayscale(0.6);
+    }
     .task.loading { opacity: 0.6; pointer-events: none; }
-    .task-row { display: flex; justify-content: space-between; align-items: center; }
-    .task-name { font-size: 14px; }
-    .task-reward { color: #f5a623; font-weight: 600; font-size: 13px; margin-left: 8px; }
-    .task.meme .task-reward { color: #6ba8ff; }
-    .task.disabled .task-reward { color: #4a4a4a; }
-    .task-desc { color: #888; font-size: 12px; margin-top: 4px; font-style: italic; }
-    .task-progress { margin-top: 8px; height: 4px; background: #1a1d21; border-radius: 2px; overflow: hidden; }
-    .task-progress-fill { height: 100%; background: #f5a623; width: 0%; transition: width 0.1s linear; }
-    .task.meme .task-progress-fill { background: #6ba8ff; }
-    .task-timer { color: #f5a623; font-size: 12px; margin-top: 4px; font-variant-numeric: tabular-nums; }
+
+    .task-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .task-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.3px;
+    }
+    .task-reward {
+      color: #f5a623;
+      font-weight: 800;
+      font-size: 15px;
+      white-space: nowrap;
+      background: rgba(245,166,35,0.12);
+      padding: 4px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(245,166,35,0.3);
+      text-shadow: 0 0 6px rgba(245,166,35,0.5);
+    }
+    .task.meme .task-reward {
+      color: #6ba8ff;
+      background: rgba(107,168,255,0.12);
+      border-color: rgba(107,168,255,0.3);
+      text-shadow: 0 0 6px rgba(107,168,255,0.5);
+    }
+    .task.disabled .task-reward {
+      color: #666;
+      background: rgba(102,102,102,0.15);
+      border-color: rgba(102,102,102,0.3);
+      text-shadow: none;
+    }
+
+    .task-desc {
+      color: #aaa;
+      font-size: 13px;
+      margin-top: 6px;
+      font-style: italic;
+      line-height: 1.4;
+    }
+    .task-desc.available {
+      color: #6ba8ff;
+      font-style: normal;
+      font-weight: 600;
+      text-shadow: 0 0 6px rgba(107,168,255,0.4);
+    }
+
+    .task-progress {
+      margin-top: 12px;
+      height: 6px;
+      background: rgba(26, 29, 33, 0.8);
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+    }
+    .task-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f5a623, #f7b84a);
+      width: 0%;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(245,166,35,0.6);
+    }
+    .task.meme .task-progress-fill {
+      background: linear-gradient(90deg, #6ba8ff, #8bc0ff);
+      box-shadow: 0 0 8px rgba(107,168,255,0.6);
+    }
+    .task-timer {
+      color: #f5a623;
+      font-size: 13px;
+      margin-top: 6px;
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+    }
     .task.meme .task-timer { color: #6ba8ff; }
+
+    /* ============== МОДАЛКА З НАЛІПКОЮ ============== */
+    .sticker-overlay {
+      position: fixed; inset: 0;
+      background: rgba(10, 12, 16, 0.92);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 300;
+      padding: 20px;
+      animation: fadeIn 0.25s ease-out;
+    }
+    .sticker-overlay.hidden { display: none; }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .sticker-modal {
+      background: #1a1d21;
+      border-radius: 20px;
+      padding: 20px;
+      max-width: 380px;
+      width: 100%;
+      border: 3px solid #f5a623;
+      box-shadow: 0 0 40px rgba(245,166,35,0.4), 0 20px 60px rgba(0,0,0,0.6);
+      animation: stickerIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-align: center;
+    }
+    @keyframes stickerIn {
+      0%   { transform: scale(0.6) rotate(-5deg); opacity: 0; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    .sticker-img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      border: 2px solid #2a2e33;
+    }
+
+    .sticker-reward {
+      font-size: 22px;
+      font-weight: 900;
+      color: #f5a623;
+      margin-bottom: 6px;
+      text-shadow: 0 0 12px rgba(245,166,35,0.6);
+      letter-spacing: 0.5px;
+    }
+    .sticker-reward.crit {
+      color: #ffd700;
+      font-size: 26px;
+      text-shadow: 0 0 20px #ffd700;
+      animation: critShake 0.5s ease-out;
+    }
+    @keyframes critShake {
+      0%, 100% { transform: translateX(0); }
+      25%      { transform: translateX(-4px); }
+      75%      { transform: translateX(4px); }
+    }
+
+    .sticker-subtitle {
+      color: #888;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .sticker-close-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #f5a623, #f7b84a);
+      color: #1a1d21;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(245,166,35,0.4);
+      transition: transform 0.15s;
+    }
+    .sticker-close-btn:active { transform: scale(0.97); }
 
     /* ============== СПОРЯДЖЕННЯ ============== */
     .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 0; }
@@ -473,8 +610,7 @@
     .bottom-nav {
       position: fixed;
       bottom: 0;
-      left: 0;
-      right: 0;
+      left: 0; right: 0;
       width: 100%;
       height: 180px;
       z-index: 60;
@@ -530,45 +666,35 @@
       transition: filter 0.2s;
     }
 
-    .nav-btn[data-tab="tasks"] .nav-btn-bg {
-      background-image: url('assets/nav_tasks.png');
-    }
+    .nav-btn[data-tab="tasks"] .nav-btn-bg { background-image: url('assets/nav_tasks.png'); }
     .nav-btn[data-tab="tasks"].active .nav-btn-bg {
       background-image: url('assets/nav_tasks_active.png');
       filter: drop-shadow(0 0 14px rgba(245,166,35,0.9)) drop-shadow(0 3px 8px rgba(0,0,0,0.6));
       animation: activeGlow 2s ease-in-out infinite;
     }
 
-    .nav-btn[data-tab="inventory"] .nav-btn-bg {
-      background-image: url('assets/nav_inventory.png');
-    }
+    .nav-btn[data-tab="inventory"] .nav-btn-bg { background-image: url('assets/nav_inventory.png'); }
     .nav-btn[data-tab="inventory"].active .nav-btn-bg {
       background-image: url('assets/nav_inventory_active.png');
       filter: drop-shadow(0 0 14px rgba(245,166,35,0.9)) drop-shadow(0 3px 8px rgba(0,0,0,0.6));
       animation: activeGlow 2s ease-in-out infinite;
     }
 
-    .nav-btn[data-tab="home"] .nav-btn-bg {
-      background-image: url('assets/nav_home.png');
-    }
+    .nav-btn[data-tab="home"] .nav-btn-bg { background-image: url('assets/nav_home.png'); }
     .nav-btn[data-tab="home"].active .nav-btn-bg {
       background-image: url('assets/nav_home_active.png');
       filter: drop-shadow(0 0 18px rgba(245,166,35,1)) drop-shadow(0 3px 8px rgba(0,0,0,0.6));
       animation: activeGlow 2s ease-in-out infinite;
     }
 
-    .nav-btn[data-tab="chests"] .nav-btn-bg {
-      background-image: url('assets/nav_chests.png');
-    }
+    .nav-btn[data-tab="chests"] .nav-btn-bg { background-image: url('assets/nav_chests.png'); }
     .nav-btn[data-tab="chests"].active .nav-btn-bg {
       background-image: url('assets/nav_chests_active.png');
       filter: drop-shadow(0 0 14px rgba(245,166,35,0.9)) drop-shadow(0 3px 8px rgba(0,0,0,0.6));
       animation: activeGlow 2s ease-in-out infinite;
     }
 
-    .nav-btn[data-tab="craft"] .nav-btn-bg {
-      background-image: url('assets/nav_craft.png');
-    }
+    .nav-btn[data-tab="craft"] .nav-btn-bg { background-image: url('assets/nav_craft.png'); }
     .nav-btn[data-tab="craft"].active .nav-btn-bg {
       background-image: url('assets/nav_craft_active.png');
       filter: drop-shadow(0 0 14px rgba(245,166,35,0.9)) drop-shadow(0 3px 8px rgba(0,0,0,0.6));
@@ -687,7 +813,6 @@
     .admin-btn { border-color: #ff9800; color: #ff9800; margin-bottom: 4px; }
     .admin-btn:active { background: #2a2e33; }
 
-    /* ============== АДАПТАЦІЯ ============== */
     @media (max-width: 420px) {
       .bottom-nav { height: 160px; }
       .bottom-nav-inner { padding: 0 4px; }
@@ -772,6 +897,16 @@
     </div>
 
     <button class="start-btn" id="start-btn" disabled>Почати службу</button>
+  </div>
+
+  <!-- МОДАЛКА З НАЛІПКОЮ -->
+  <div class="sticker-overlay hidden" id="sticker-overlay">
+    <div class="sticker-modal">
+      <img class="sticker-img" id="sticker-img" src="" alt="Стікер">
+      <div class="sticker-reward" id="sticker-reward">+5 Е</div>
+      <div class="sticker-subtitle" id="sticker-subtitle">Завдання виконано</div>
+      <button class="sticker-close-btn" id="sticker-close">Забрати</button>
+    </div>
   </div>
 
   <!-- ОВЕРЛЕЇ -->
@@ -901,21 +1036,11 @@
 
     <div class="bottom-nav">
       <div class="bottom-nav-inner">
-        <button class="nav-btn" data-tab="tasks">
-          <div class="nav-btn-bg"></div>
-        </button>
-        <button class="nav-btn" data-tab="inventory">
-          <div class="nav-btn-bg"></div>
-        </button>
-        <button class="nav-btn center active" data-tab="home">
-          <div class="nav-btn-bg"></div>
-        </button>
-        <button class="nav-btn" data-tab="chests">
-          <div class="nav-btn-bg"></div>
-        </button>
-        <button class="nav-btn" data-tab="craft">
-          <div class="nav-btn-bg"></div>
-        </button>
+        <button class="nav-btn" data-tab="tasks"><div class="nav-btn-bg"></div></button>
+        <button class="nav-btn" data-tab="inventory"><div class="nav-btn-bg"></div></button>
+        <button class="nav-btn center active" data-tab="home"><div class="nav-btn-bg"></div></button>
+        <button class="nav-btn" data-tab="chests"><div class="nav-btn-bg"></div></button>
+        <button class="nav-btn" data-tab="craft"><div class="nav-btn-bg"></div></button>
       </div>
     </div>
 
@@ -1192,7 +1317,7 @@
           ${onCooldown ? `
             <div class="task-progress"><div class="task-progress-fill" style="width:${progressPct}%"></div></div>
             <div class="task-timer" data-timer="${task.id}">⏱ ${formatTime(remaining)}</div>
-          ` : `<div class="task-desc" style="font-style:normal;color:#6ba8ff">✓ Доступно</div>`}
+          ` : `<div class="task-desc available">✓ Доступно</div>`}
         `;
         if (!onCooldown) div.addEventListener('click', () => completeTask(task, div));
         container.appendChild(div);
@@ -1323,26 +1448,60 @@
         applyServerPlayer(data.player);
         state.power = data.power || state.power;
 
-        if (data.is_crit) {
-          showCritOverlay();
-          if (tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
-        }
-
         render();
 
         pulseEl('coin-badge');
         if (task.stat === 'strength')   pulseEl('stat-strength');
         if (task.stat === 'discipline') pulseEl('stat-discipline');
 
-        if (data.leveled_up) { showToast(`🎉 Нове звання: ${data.player.rank}!`); }
-        else if (data.is_crit) showToast(`🎉 КРИТ! +${data.reward} Е (×3)`, 'crit');
-        else showToast(`+${data.reward} Е`);
-        if (tg.HapticFeedback && !data.is_crit) tg.HapticFeedback.impactOccurred('light');
+        // Показуємо модалку зі стікером
+        showStickerModal(data.sticker, data.reward, data.is_crit, data.leveled_up, data.player.rank);
+        if (tg.HapticFeedback) {
+          if (data.is_crit) tg.HapticFeedback.notificationOccurred('success');
+          else tg.HapticFeedback.impactOccurred('light');
+        }
       } catch (e) {
         el.classList.remove('loading');
         showToast("❌ " + e.message, 'error');
       }
     }
+
+    function showStickerModal(sticker, reward, isCrit, leveledUp, newRank) {
+      if (!sticker) {
+        // Якщо стікера немає — просто показуємо toast
+        if (leveledUp) showToast(`🎉 Нове звання: ${newRank}!`);
+        else if (isCrit) showToast(`🎉 КРИТ! +${reward} Е (×3)`, 'crit');
+        else showToast(`+${reward} Е`);
+        return;
+      }
+
+      const overlay = document.getElementById('sticker-overlay');
+      const img = document.getElementById('sticker-img');
+      const rewardEl = document.getElementById('sticker-reward');
+      const subtitle = document.getElementById('sticker-subtitle');
+
+      img.src = 'assets/stickers/' + sticker;
+
+      if (isCrit) {
+        rewardEl.textContent = `🎉 КРИТ! +${reward} Е`;
+        rewardEl.className = 'sticker-reward crit';
+        subtitle.textContent = '×3 нагорода! Пощастило!';
+      } else if (leveledUp) {
+        rewardEl.textContent = `+${reward} Е`;
+        rewardEl.className = 'sticker-reward';
+        subtitle.textContent = `🎖 Нове звання: ${newRank}`;
+      } else {
+        rewardEl.textContent = `+${reward} Е`;
+        rewardEl.className = 'sticker-reward';
+        subtitle.textContent = 'Завдання виконано';
+      }
+
+      overlay.classList.remove('hidden');
+    }
+
+    document.getElementById('sticker-close').addEventListener('click', () => {
+      document.getElementById('sticker-overlay').classList.add('hidden');
+    });
 
     async function loadChests() {
       try { chests = (await api("/api/chests")).chests; } catch (e) { console.warn(e); }
@@ -1523,14 +1682,6 @@
       t.classList.add('show');
       clearTimeout(t._timer);
       t._timer = setTimeout(() => t.classList.remove('show'), 2200);
-    }
-
-    function showCritOverlay() {
-      const el = document.getElementById('crit-overlay');
-      el.classList.remove('show');
-      void el.offsetWidth;
-      el.classList.add('show');
-      setTimeout(() => el.classList.remove('show'), 1000);
     }
 
     setInterval(() => {
