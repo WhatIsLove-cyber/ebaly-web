@@ -383,6 +383,8 @@
       margin-bottom: 16px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.5);
       border: 2px solid #2a2e33;
+      min-height: 200px;
+      background: #2a2e33;
     }
     .sticker-reward {
       font-size: 22px; font-weight: 900; color: #f5a623;
@@ -600,15 +602,15 @@
     }
     .nav-btn {
       position: relative; flex: 1;
-      max-width: 160px; height: 160px;
+      max-width: 200px; height: 200px;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; transition: transform 0.15s;
       background: none; border: none; padding: 0;
     }
     .nav-btn:active { transform: scale(0.93); }
     .nav-btn.center {
-      flex: 1.5; max-width: 210px; height: 210px;
-      margin-top: -95px; z-index: 3;
+      flex: 1.4; max-width: 260px; height: 260px;
+      margin-top: -110px; z-index: 3;
     }
     .nav-btn-bg {
       position: absolute; inset: 0;
@@ -755,15 +757,6 @@
     }
     .loading-overlay.hidden { display: none; }
 
-    .offline-banner {
-      background: linear-gradient(135deg, #2a2e33, #343a40);
-      border: 1px solid #f5a623; border-radius: 8px;
-      padding: 14px; margin-bottom: 12px; display: none;
-    }
-    .offline-banner.show { display: block; }
-    .offline-title { color: #f5a623; font-weight: 600; font-size: 14px; }
-    .offline-text { color: #ccc; font-size: 13px; margin-top: 4px; }
-
     .reset-btn, .admin-btn {
       margin-top: 12px; width: 100%; background: rgba(42,46,51,0.9);
       border: 1px solid #4a4a4a; color: #888;
@@ -774,19 +767,19 @@
     .admin-btn:active { background: #2a2e33; }
 
     @media (max-width: 420px) {
-      .bottom-nav { height: 180px; }
+      .bottom-nav { height: 190px; }
       .bottom-nav-inner { padding: 0 4px; }
-      .nav-btn { height: 130px; max-width: 130px; }
-      .nav-btn.center { height: 170px; max-width: 170px; margin-top: -78px; }
-      .content { padding: 0 12px 210px; }
+      .nav-btn { height: 180px; max-width: 180px; }
+      .nav-btn.center { height: 235px; max-width: 235px; margin-top: -100px; }
+      .content { padding: 0 12px 220px; }
     }
 
     @media (max-width: 360px) {
-      .bottom-nav { height: 165px; }
+      .bottom-nav { height: 175px; }
       .bottom-nav-inner { padding: 0 2px; }
-      .nav-btn { height: 120px; max-width: 120px; }
-      .nav-btn.center { height: 155px; max-width: 155px; margin-top: -72px; }
-      .content { padding: 0 12px 195px; }
+      .nav-btn { height: 165px; max-width: 165px; }
+      .nav-btn.center { height: 215px; max-width: 215px; margin-top: -92px; }
+      .content { padding: 0 12px 205px; }
     }
   </style>
 </head>
@@ -796,7 +789,6 @@
 
   <div class="app-bg"></div>
 
-  <!-- ЕКРАН СТВОРЕННЯ -->
   <div class="creation-overlay hidden" id="creation-overlay">
     <div class="creation-header">
       <div class="creation-title">🇺🇦 Створи свого бійця</div>
@@ -859,7 +851,6 @@
     <button class="start-btn" id="start-btn" disabled>Почати службу</button>
   </div>
 
-  <!-- МОДАЛКА СТІКЕРА -->
   <div class="sticker-overlay hidden" id="sticker-overlay">
     <div class="sticker-modal">
       <img class="sticker-img" id="sticker-img" src="" alt="Стікер">
@@ -869,7 +860,6 @@
     </div>
   </div>
 
-  <!-- МОДАЛКА ПРЕДМЕТА -->
   <div class="item-overlay hidden" id="item-overlay">
     <div class="item-modal" id="item-modal">
       <div class="item-emoji" id="item-emoji">👕</div>
@@ -885,20 +875,16 @@
     </div>
   </div>
 
-  <!-- ЩОДЕННА НАГОРОДА -->
   <div class="daily-overlay hidden" id="daily-overlay">
     <div class="daily-modal">
       <div class="daily-title">🎁 Щоденна нагорода</div>
       <div class="daily-subtitle" id="daily-subtitle">Заходь щодня і отримуй бонуси</div>
-
       <div class="daily-streak" id="daily-streak"></div>
-
       <button class="daily-claim-btn" id="daily-claim-btn">Забрати</button>
       <button class="daily-close-btn hidden" id="daily-close-btn">Закрити</button>
     </div>
   </div>
 
-  <!-- ОВЕРЛЕЇ -->
   <div class="crit-overlay" id="crit-overlay"><div class="crit-overlay-text">🎉 КРИТ!</div></div>
 
   <div class="chest-overlay hidden" id="chest-overlay">
@@ -913,7 +899,6 @@
 
   <div class="toast" id="toast"></div>
 
-  <!-- ГОЛОВНИЙ APP -->
   <div class="app hidden" id="app">
 
     <div class="top-bar">
@@ -977,7 +962,7 @@
         <div class="slots" id="slots-container"></div>
 
         <div class="section-title"><span>🎒 Інвентар</span><span class="count" id="inv-count">0</span></div>
-        <div style="color:#666; font-size:11px; margin-bottom:8px;">Клік на предмет — відкрити меню (одягнути / продати)</div>
+        <div style="color:#666; font-size:11px; margin-bottom:8px;">Клік на предмет — відкрити меню</div>
         <div class="inv-grid" id="inventory-container"></div>
       </div>
 
@@ -990,9 +975,7 @@
 
       <div id="tab-craft" class="hidden">
         <div class="section-title"><span>⚒ Крафт</span></div>
-        <div style="color:#888; font-size:12px; margin-bottom:12px;">
-          Обмінюй предмети на рідкісніші. Доступно з рівня 5.
-        </div>
+        <div style="color:#888; font-size:12px; margin-bottom:12px;">Обмінюй предмети на рідкісніші. Доступно з рівня 5.</div>
         <div id="craft-container"></div>
       </div>
 
@@ -1026,17 +1009,6 @@
     tg.ready();
     tg.expand();
     const INIT_DATA = tg.initData;
-
-
-    function preloadStickers() {
-      const allStickers = [];
-      TASKS.forEach(task => {
-        if (task.stickers) allStickers.push(...task.stickers);
-      });
-      allStickers.forEach(name => {
-        const img = new Image();
-        img.src = 'assets/stickers/' + name;
-      });
 
     const TASKS = [
       { id: 'order',   name: '🧹 Навести порядок',       reward: 5,   cooldown: 60,    stat: 'discipline', type: 'normal', stickers: ["order_1.webp","order_2.webp","order_3.webp","order_4.webp","order_5.webp"] },
@@ -1072,6 +1044,18 @@
       callsign: "", callsign_ok: false,
       gender: "male", skin: 0, hair: 0, eyes: 0,
     };
+
+    // Preload stickers
+    function preloadStickers() {
+      const allStickers = [];
+      TASKS.forEach(task => {
+        if (task.stickers) allStickers.push(...task.stickers);
+      });
+      allStickers.forEach(name => {
+        const img = new Image();
+        img.src = 'assets/stickers/' + name;
+      });
+    }
 
     async function api(path, options = {}) {
       const res = await fetch(API_URL + path, {
@@ -1120,7 +1104,6 @@
         if (state.is_admin) document.getElementById('admin-block').classList.remove('hidden');
         document.getElementById('loading').classList.add('hidden');
 
-        // Перевіряємо щоденну нагороду
         checkDailyReward();
       } catch (e) {
         document.getElementById('loading').innerHTML = '❌ ' + e.message;
@@ -1152,7 +1135,6 @@
       btn.addEventListener('click', () => switchTab(btn.dataset.tab));
     });
 
-    // Створення персонажа
     document.querySelectorAll('.option').forEach(opt => {
       opt.addEventListener('click', () => {
         const field = opt.dataset.field;
@@ -1261,7 +1243,6 @@
       }
     });
 
-    // Рендер
     function render() {
       document.getElementById('value-level').textContent = state.level;
       document.getElementById('value-e').textContent = state.e;
@@ -1409,7 +1390,6 @@
       return '🎖 Новобранець';
     }
 
-    // Завдання
     async function completeTask(task, el) {
       if (getCooldownRemaining(task) > 0) return;
       el.classList.add('loading');
@@ -1417,7 +1397,7 @@
         const data = await api("/api/complete", { method: "POST", body: JSON.stringify({ task_id: task.id }) });
         if (!data) {
           el.classList.remove('loading');
-          showToast("❌ Порожня відповідь від сервера", 'error');
+          showToast("❌ Порожня відповідь", 'error');
           return;
         }
         applyServerPlayer(data.player);
@@ -1493,7 +1473,6 @@
       document.getElementById('sticker-overlay').classList.add('hidden');
     });
 
-    // Модалка предмета
     function openItemModal(item) {
       itemTarget = item;
 
@@ -1507,7 +1486,6 @@
       document.getElementById('item-power').textContent = `+${item.power} потужності`;
       document.getElementById('item-sell-price').textContent = `💰 ${item.sell_price} Е`;
 
-      // Якщо вже вдягнутий — змінюємо кнопки
       const equipBtn = document.getElementById('item-equip');
       const sellBtn = document.getElementById('item-sell');
       const modalEl = document.getElementById('item-modal');
@@ -1543,7 +1521,6 @@
       document.getElementById('item-overlay').classList.add('hidden');
 
       if (item.equipped) {
-        // Знайти слот предмета і зняти
         for (const [slot, equippedItem] of Object.entries(equipped)) {
           if (equippedItem && equippedItem.inv_id === item.inv_id) {
             await unequip(slot);
@@ -1572,7 +1549,6 @@
       } catch (e) { showToast("❌ " + e.message, 'error'); }
     });
 
-    // Сундуки
     async function loadChests() {
       try { chests = (await api("/api/chests")).chests; } catch (e) { console.warn(e); }
     }
@@ -1606,7 +1582,6 @@
       document.getElementById('chest-overlay').classList.add('hidden');
     });
 
-    // Інвентар
     async function loadInventory() {
       try {
         const data = await api("/api/inventory");
@@ -1641,7 +1616,6 @@
       } catch (e) { showToast("❌ " + e.message, 'error'); }
     }
 
-    // Крафт
     async function loadCraft() {
       try {
         const data = await api("/api/craft/info");
@@ -1677,7 +1651,6 @@
       } catch (e) { showToast("❌ " + e.message, 'error'); }
     }
 
-    // ЩОДЕННА НАГОРОДА
     async function checkDailyReward() {
       try {
         dailyData = await api("/api/daily/status");
@@ -1748,7 +1721,6 @@
       document.getElementById('daily-overlay').classList.add('hidden');
     });
 
-    // Адмін
     async function adminGrant(payload) {
       try {
         const data = await api("/api/admin/grant", { method: "POST", body: JSON.stringify(payload) });
