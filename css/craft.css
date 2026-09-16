@@ -1,0 +1,39 @@
+/* =========================================================
+   КРАФТ
+   ========================================================= */
+.craft-card {
+  background: rgba(42, 46, 51, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 3px solid #888;
+}
+.craft-info { flex: 1; }
+.craft-title { font-size: 14px; }
+.craft-detail {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+}
+.craft-btn {
+  background: #f5a623;
+  color: #1a1d21;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  margin-left: 12px;
+}
+.craft-btn:disabled {
+  background: #444;
+  color: #777;
+  cursor: not-allowed;
+}
