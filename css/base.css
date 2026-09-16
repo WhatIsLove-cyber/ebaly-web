@@ -39,12 +39,12 @@ body {
 }
 
 /* =========================================================
-   TOP BAR
+   TOP BAR (СТИСНУТИЙ)
    ========================================================= */
 .top-bar {
   position: relative;
   width: 100%;
-  height: 120px;
+  height: 115px;
   background-image: url('../assets/top_panel.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -53,10 +53,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 4px 20px 0 20px;
+  padding: 2px 18px 0 18px;
   flex-shrink: 0;
   z-index: 20;
-  margin-bottom: -8px;
+  margin-bottom: -10px;
 }
 
 .name-block {
@@ -66,22 +66,22 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding-top: 0px;
+  gap: 1px;
+  padding-top: 0;
 }
 .name-block:active { transform: scale(0.98); }
 .name-callsign {
   font-family: 'Russo One', sans-serif;
-  font-size: 20px;
-  letter-spacing: 1.5px;
+  font-size: 17px;
+  letter-spacing: 1.2px;
   color: #fff;
   text-shadow: 
     0 0 10px rgba(245,166,35,0.8),
     0 0 20px rgba(245,166,35,0.4),
     0 2px 4px rgba(0,0,0,0.8);
-  padding: 4px 16px;
+  padding: 3px 14px;
   border: 2px solid #f5a623;
-  border-radius: 18px;
+  border-radius: 16px;
   background: linear-gradient(135deg, rgba(245,166,35,0.15) 0%, rgba(245,166,35,0.05) 100%);
   box-shadow: 
     0 0 15px rgba(245,166,35,0.5),
@@ -92,7 +92,7 @@ body {
   max-width: 90%;
 }
 .name-rank {
-  font-size: 11px;
+  font-size: 10px;
   color: #f5a623;
   white-space: nowrap;
   overflow: hidden;
@@ -112,8 +112,9 @@ body {
 
 /* Кружок рівня */
 .level-circle {
-  width: 52px;
-  height: 60px;
+  width: 48px;
+  height: 48px;
+  aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #4a3a1a, #1a1410);
   border: 3px solid #f5a623;
@@ -134,21 +135,22 @@ body {
 }
 .level-label {
   position: absolute;
-  bottom: -20px;
+  bottom: -16px;
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Russo One', sans-serif;
-  font-size: 10px;
+  font-size: 9px;
   color: #f5a623;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   text-shadow: 0 0 6px rgba(245,166,35,0.7);
   white-space: nowrap;
 }
 
 /* Кружок Е */
 .coin-circle {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
+  aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #1a3a1a, #0a1a0a);
   border: 3px solid #4caf50;
@@ -159,7 +161,7 @@ body {
   box-shadow: 0 0 15px rgba(76,175,80,0.6), inset 0 -3px 8px rgba(0,0,0,0.5);
   flex-shrink: 0;
   position: relative;
-  padding: 2px 0;
+  padding: 1px 0;
 }
 .coin-circle-img {
   width: 22px;
@@ -168,13 +170,13 @@ body {
   margin-bottom: -2px;
 }
 .coin-circle-fallback {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1;
   margin-bottom: -2px;
 }
 .coin-circle-value {
   font-family: 'Russo One', sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   color: #4caf50;
   text-shadow: 0 0 6px rgba(76,175,80,0.8);
   font-variant-numeric: tabular-nums;
@@ -188,7 +190,7 @@ body {
   font-family: 'Russo One', sans-serif;
   font-size: 9px;
   color: #4caf50;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   text-shadow: 0 0 6px rgba(76,175,80,0.7);
   white-space: nowrap;
 }
@@ -200,14 +202,14 @@ body {
 }
 
 /* =========================================================
-   ШТОРКА (Потужність / Незламність)
+   ШТОРКА (Потужність / Незламність) — стиснута
    ========================================================= */
 .stats-curtain {
-  padding: 22px 20px 6px;
+  padding: 6px 20px 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
   flex-shrink: 0;
   z-index: 15;
   position: relative;
@@ -216,7 +218,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   transition: transform 0.15s;
 }
 .stat-row.pulse { animation: textPulse 0.4s ease-out; }
@@ -225,16 +227,16 @@ body {
   40%  { transform: scale(1.12); }
   100% { transform: scale(1); }
 }
-.stat-row .stat-icon { font-size: 20px; line-height: 1; }
+.stat-row .stat-icon { font-size: 16px; line-height: 1; }
 .stat-row .stat-label {
   font-family: 'Russo One', sans-serif;
-  font-size: 15px;
-  letter-spacing: 1.5px;
+  font-size: 12px;
+  letter-spacing: 1.2px;
   text-shadow: 0 0 8px currentColor, 0 1px 3px rgba(0,0,0,0.9);
 }
 .stat-row .stat-num {
   font-family: 'Russo One', sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   text-shadow: 0 0 10px currentColor, 0 1px 3px rgba(0,0,0,0.9);
   font-variant-numeric: tabular-nums;
 }
@@ -253,16 +255,24 @@ body {
 .content.no-scroll { overflow-y: hidden; }
 
 /* HOME */
-#tab-home { height: 100%; display: flex; flex-direction: column; position: relative; }
+#tab-home {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: -10px;
+}
 .home-scene {
   flex: 1; position: relative;
   display: flex; align-items: flex-end; justify-content: center;
   min-height: 0; padding: 0 8px 20px;
 }
 .character-frame {
-  position: relative; width: 240px; height: 340px;
+  position: relative;
+  width: 220px; height: 320px;
   display: flex; align-items: center; justify-content: center;
-  z-index: 2; margin-bottom: -10px;
+  z-index: 2;
+  margin-bottom: -10px;
 }
 .character-frame::after {
   content: ""; position: absolute;
@@ -289,7 +299,11 @@ body {
   display: flex; justify-content: space-between; align-items: center;
   text-shadow: 0 0 8px rgba(245,166,35,0.4);
 }
-.section-title .count { font-family: -apple-system, sans-serif; color: #888; font-size: 12px; text-transform: none; letter-spacing: 0; font-weight: 700; }
+.section-title .count {
+  font-family: -apple-system, sans-serif;
+  color: #888; font-size: 12px;
+  text-transform: none; letter-spacing: 0; font-weight: 700;
+}
 .section-title:first-child { margin-top: 8px; }
 
 /* =========================================================
@@ -419,18 +433,18 @@ body {
 
 /* Адаптив */
 @media (max-width: 420px) {
-  .top-bar { height: 155px; padding: 6px 18px 0; }
-  .level-circle { width: 52px; height: 52px; }
-  .level-circle-value { font-size: 18px; }
-  .level-label { font-size: 9px; bottom: -18px; }
-  .coin-circle { width: 56px; height: 56px; }
-  .coin-circle-img { width: 22px; height: 22px; }
-  .coin-circle-value { font-size: 12px; }
-  .coin-label { font-size: 9px; bottom: -18px; }
-  .name-callsign { font-size: 17px; padding: 4px 14px; }
-  .name-rank { font-size: 10px; }
-  .stat-row .stat-label { font-size: 13px; }
-  .stat-row .stat-num { font-size: 20px; }
+  .top-bar { height: 108px; padding: 2px 16px 0; }
+  .level-circle { width: 44px; height: 44px; }
+  .level-circle-value { font-size: 16px; }
+  .level-label { font-size: 8px; bottom: -15px; }
+  .coin-circle { width: 48px; height: 48px; }
+  .coin-circle-img { width: 20px; height: 20px; }
+  .coin-circle-value { font-size: 10px; }
+  .coin-label { font-size: 8px; bottom: -15px; }
+  .name-callsign { font-size: 15px; padding: 3px 12px; }
+  .name-rank { font-size: 9px; }
+  .stat-row .stat-label { font-size: 11px; }
+  .stat-row .stat-num { font-size: 18px; }
   .bottom-nav { height: 112px; }
   .bottom-nav-inner { padding: 0 4px 16px; }
   .nav-btn { height: 140px; max-width: 140px; }
@@ -438,18 +452,18 @@ body {
   .content { padding: 0 12px 130px; }
 }
 @media (max-width: 360px) {
-  .top-bar { height: 145px; padding: 4px 14px 0; }
-  .level-circle { width: 46px; height: 46px; }
-  .level-circle-value { font-size: 16px; }
-  .level-label { font-size: 8px; bottom: -17px; }
-  .coin-circle { width: 50px; height: 50px; }
-  .coin-circle-img { width: 20px; height: 20px; }
-  .coin-circle-value { font-size: 11px; }
-  .coin-label { font-size: 8px; bottom: -17px; }
-  .name-callsign { font-size: 15px; padding: 3px 12px; }
-  .name-rank { font-size: 9px; }
-  .stat-row .stat-label { font-size: 12px; }
-  .stat-row .stat-num { font-size: 18px; }
+  .top-bar { height: 100px; padding: 2px 14px 0; }
+  .level-circle { width: 40px; height: 40px; }
+  .level-circle-value { font-size: 14px; }
+  .level-label { font-size: 7px; bottom: -14px; }
+  .coin-circle { width: 44px; height: 44px; }
+  .coin-circle-img { width: 18px; height: 18px; }
+  .coin-circle-value { font-size: 9px; }
+  .coin-label { font-size: 7px; bottom: -14px; }
+  .name-callsign { font-size: 14px; padding: 2px 10px; }
+  .name-rank { font-size: 8px; }
+  .stat-row .stat-label { font-size: 10px; }
+  .stat-row .stat-num { font-size: 16px; }
   .bottom-nav { height: 101px; }
   .bottom-nav-inner { padding: 0 2px 14px; }
   .nav-btn { height: 128px; max-width: 128px; }
