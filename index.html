@@ -114,22 +114,76 @@
       display: flex; flex-direction: column; padding: 0;
     }
 
-    /* ============ ТОП-БАР ============ */
+    /* ТОП-БАР */
     .top-bar {
       position: relative;
       width: 100%;
-      height: 160px;
+      height: 170px;
       background-image: url('assets/top_panel.png');
       background-size: 100% 100%;
       background-repeat: no-repeat;
       background-position: center top;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 24px 8px 24px;
+      justify-content: flex-start;
+      padding: 8px 20px 0 20px;
       flex-shrink: 0;
       z-index: 20;
       margin-bottom: -16px;
+    }
+
+    /* Нік + ранг — зверху по центру */
+    .name-block {
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding-top: 4px;
+    }
+    .name-block:active { transform: scale(0.98); }
+    .name-callsign {
+      font-family: 'Russo One', sans-serif;
+      font-size: 20px;
+      letter-spacing: 1.5px;
+      color: #fff;
+      text-shadow: 
+        0 0 10px rgba(245,166,35,0.8),
+        0 0 20px rgba(245,166,35,0.4),
+        0 2px 4px rgba(0,0,0,0.8);
+      padding: 4px 16px;
+      border: 2px solid #f5a623;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(245,166,35,0.15) 0%, rgba(245,166,35,0.05) 100%);
+      box-shadow: 
+        0 0 15px rgba(245,166,35,0.5),
+        inset 0 0 10px rgba(245,166,35,0.2);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 90%;
+    }
+    .name-rank {
+      font-size: 11px;
+      color: #f5a623;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-shadow: 0 0 6px rgba(245,166,35,0.5);
+      letter-spacing: 0.5px;
+    }
+
+    /* Рядок з кружками */
+    .top-circles-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 12px;
+      padding: 0 4px;
     }
 
     /* Кружок рівня */
@@ -156,65 +210,18 @@
     }
     .level-label {
       position: absolute;
-      bottom: -18px;
+      bottom: -20px;
       left: 50%;
       transform: translateX(-50%);
+      font-family: 'Russo One', sans-serif;
       font-size: 10px;
-      font-weight: 800;
       color: #f5a623;
       letter-spacing: 1px;
       text-shadow: 0 0 6px rgba(245,166,35,0.7);
       white-space: nowrap;
     }
 
-    /* Нік + ранг по центру */
-    .name-block {
-      flex: 1;
-      text-align: center;
-      min-width: 0;
-      padding: 0 12px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      margin-bottom: 20px;
-    }
-    .name-block:active {
-      transform: scale(0.98);
-    }
-    .name-callsign {
-      font-family: 'Russo One', sans-serif;
-      font-size: 20px;
-      letter-spacing: 1.5px;
-      color: #fff;
-      text-shadow: 
-        0 0 10px rgba(245,166,35,0.8),
-        0 0 20px rgba(245,166,35,0.4),
-        0 2px 4px rgba(0,0,0,0.8);
-      padding: 5px 18px;
-      border: 2px solid #f5a623;
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(245,166,35,0.15) 0%, rgba(245,166,35,0.05) 100%);
-      box-shadow: 
-        0 0 15px rgba(245,166,35,0.5),
-        inset 0 0 10px rgba(245,166,35,0.2);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
-    }
-    .name-rank {
-      font-size: 11px;
-      color: #f5a623;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-shadow: 0 0 6px rgba(245,166,35,0.5);
-      letter-spacing: 0.5px;
-    }
-
-    /* Кружок Е-балів */
+    /* Кружок Е */
     .coin-circle {
       width: 64px;
       height: 64px;
@@ -251,11 +258,11 @@
     }
     .coin-label {
       position: absolute;
-      bottom: -18px;
+      bottom: -20px;
       left: 50%;
       transform: translateX(-50%);
+      font-family: 'Russo One', sans-serif;
       font-size: 10px;
-      font-weight: 800;
       color: #4caf50;
       letter-spacing: 1px;
       text-shadow: 0 0 6px rgba(76,175,80,0.7);
@@ -268,11 +275,12 @@
       100% { transform: scale(1); }
     }
 
-    /* ============ ШТОРКА ============ */
+    /* ШТОРКА */
     .stats-curtain {
-      padding: 22px 24px 8px;
+      padding: 22px 20px 6px;
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 6px;
       flex-shrink: 0;
       z-index: 15;
@@ -281,8 +289,8 @@
     .stat-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+      justify-content: center;
+      gap: 10px;
       transition: transform 0.15s;
     }
     .stat-row.pulse { animation: textPulse 0.4s ease-out; }
@@ -291,22 +299,17 @@
       40%  { transform: scale(1.12); }
       100% { transform: scale(1); }
     }
-    .stat-row-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .stat-row .stat-icon { font-size: 18px; line-height: 1; }
+    .stat-row .stat-icon { font-size: 20px; line-height: 1; }
     .stat-row .stat-label {
       font-family: 'Russo One', sans-serif;
-      font-size: 14px;
-      letter-spacing: 1px;
+      font-size: 15px;
+      letter-spacing: 1.5px;
       text-shadow: 0 0 8px currentColor, 0 1px 3px rgba(0,0,0,0.9);
     }
     .stat-row .stat-num {
       font-family: 'Russo One', sans-serif;
-      font-size: 22px;
-      text-shadow: 0 0 8px currentColor, 0 1px 3px rgba(0,0,0,0.9);
+      font-size: 24px;
+      text-shadow: 0 0 10px currentColor, 0 1px 3px rgba(0,0,0,0.9);
       font-variant-numeric: tabular-nums;
     }
     .stat-power { color: #f5a623; }
@@ -348,12 +351,13 @@
 
     /* СЕКЦІЇ */
     .section-title {
+      font-family: 'Russo One', sans-serif;
       color: #f5a623; font-size: 13px; text-transform: uppercase;
-      margin: 20px 0 12px; letter-spacing: 1.5px; font-weight: 800;
+      margin: 20px 0 12px; letter-spacing: 1.5px;
       display: flex; justify-content: space-between; align-items: center;
       text-shadow: 0 0 8px rgba(245,166,35,0.4);
     }
-    .section-title .count { color: #888; font-size: 12px; text-transform: none; letter-spacing: 0; font-weight: 700; }
+    .section-title .count { font-family: -apple-system, sans-serif; color: #888; font-size: 12px; text-transform: none; letter-spacing: 0; font-weight: 700; }
     .section-title:first-child { margin-top: 8px; }
 
     /* ЗАВДАННЯ */
@@ -382,7 +386,7 @@
     .task.disabled { opacity: 0.7; border-left-color: #4a4a4a; cursor: pointer; }
     .task.loading { opacity: 0.6; pointer-events: none; }
     .task-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-    .task-name { font-size: 16px; font-weight: 600; color: #ffffff; letter-spacing: 0.3px; }
+    .task-name { font-family: 'Russo One', sans-serif; font-size: 15px; color: #ffffff; letter-spacing: 0.5px; }
     .task-reward {
       color: #f5a623; font-weight: 800; font-size: 15px; white-space: nowrap;
       background: rgba(245,166,35,0.12);
@@ -415,7 +419,7 @@
     }
     .chest-card:active { transform: scale(0.97); }
     .chest-card-img { width: 100%; max-width: 130px; height: 130px; object-fit: contain; margin: 0 auto 10px; display: block; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5)); }
-    .chest-card-name { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+    .chest-card-name { font-family: 'Russo One', sans-serif; font-size: 12px; margin-bottom: 6px; color: #fff; letter-spacing: 0.3px; line-height: 1.3; }
     .chest-card-price { font-size: 15px; font-weight: 800; color: #f5a623; text-shadow: 0 0 6px rgba(245,166,35,0.5); }
     .chest-card.common    { border-color: #8d6e63; box-shadow: 0 4px 14px rgba(0,0,0,0.4), 0 0 20px rgba(141,110,99,0.3); }
     .chest-card.improved  { border-color: #2196f3; box-shadow: 0 4px 14px rgba(0,0,0,0.4), 0 0 20px rgba(33,150,243,0.3); }
@@ -451,7 +455,7 @@
     .chest-modal.elite     { border-color: #ff9800; box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(255,152,0,0.4); }
     .chest-modal.royal     { border-color: #9c27b0; box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(156,39,176,0.4); }
     .chest-modal-img { width: 156px; height: 156px; object-fit: contain; margin: 0 auto 12px; display: block; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6)); }
-    .chest-modal-title { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .chest-modal-title { font-family: 'Russo One', sans-serif; font-size: 18px; color: #fff; margin-bottom: 8px; letter-spacing: 0.5px; }
     .chest-modal-balance { font-size: 15px; color: #4caf50; font-weight: 700; margin-bottom: 16px; text-shadow: 0 0 6px rgba(76,175,80,0.4); }
     .chest-modal-chances-title { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 700; }
     .chest-modal-chances { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 12px; margin-bottom: 20px; padding: 12px; background: rgba(42,46,51,0.6); border-radius: 10px; }
@@ -487,7 +491,8 @@
     }
     .roulette-overlay.hidden { display: none; }
     .roulette-title {
-      font-size: 20px; font-weight: 800; color: #f5a623;
+      font-family: 'Russo One', sans-serif;
+      font-size: 18px; color: #f5a623;
       text-transform: uppercase; letter-spacing: 2px;
       margin-bottom: 20px; text-shadow: 0 0 20px rgba(245,166,35,0.6);
     }
@@ -637,11 +642,11 @@
       padding: 16px 20px;
     }
     .profile-section-title {
+      font-family: 'Russo One', sans-serif;
       font-size: 12px;
       color: #f5a623;
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      font-weight: 800;
       margin-bottom: 12px;
       text-shadow: 0 0 6px rgba(245,166,35,0.4);
     }
@@ -691,7 +696,7 @@
       text-align: center;
       animation: stickerIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .daily-title { font-size: 22px; font-weight: 800; color: #f5a623; margin-bottom: 6px; text-shadow: 0 0 12px rgba(245,166,35,0.6); }
+    .daily-title { font-family: 'Russo One', sans-serif; font-size: 20px; color: #f5a623; margin-bottom: 6px; text-shadow: 0 0 12px rgba(245,166,35,0.6); letter-spacing: 1px; }
     .daily-subtitle { font-size: 13px; color: #888; margin-bottom: 20px; }
     .daily-streak { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 20px; }
     .daily-day { background: #2a2e33; border-radius: 10px; padding: 10px 4px; border: 2px solid #343a40; opacity: 0.5; transition: all 0.2s; }
@@ -730,7 +735,7 @@
     }
     .inv-stat-box.defense { border-color: rgba(107,168,255,0.3); }
     .inv-stat-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 700; }
-    .inv-stat-value { font-size: 24px; font-weight: 900; color: #f5a623; text-shadow: 0 0 10px rgba(245,166,35,0.6); font-variant-numeric: tabular-nums; }
+    .inv-stat-value { font-family: 'Russo One', sans-serif; font-size: 24px; color: #f5a623; text-shadow: 0 0 10px rgba(245,166,35,0.6); font-variant-numeric: tabular-nums; }
     .inv-stat-box.defense .inv-stat-value { color: #6ba8ff; text-shadow: 0 0 10px rgba(107,168,255,0.6); }
 
     .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 0; }
@@ -774,7 +779,7 @@
     .inv-item:active { transform: scale(0.95); }
     .inv-item.equipped { opacity: 0.5; }
     .inv-emoji { font-size: 24px; }
-    .inv-name { font-size: 10px; margin-top: 4px; color: #ccc; line-height: 1.2; min-height: 24px; }
+    .inv-name { font-family: 'Russo One', sans-serif; font-size: 9px; margin-top: 4px; color: #ccc; line-height: 1.3; min-height: 26px; letter-spacing: 0.2px; }
     .inv-power { font-size: 11px; font-weight: 600; margin-top: 2px; }
     .inv-sell { font-size: 10px; color: #f5a623; margin-top: 1px; }
     .inv-badge {
@@ -897,8 +902,9 @@
     }
     .crit-overlay.show { animation: critOverlay 1s ease-out; }
     .crit-overlay-text {
-      font-size: 48px; font-weight: 900; color: #ffd700;
+      font-size: 42px; font-weight: 900; color: #ffd700;
       text-shadow: 0 0 30px #ffd700;
+      font-family: 'Russo One', sans-serif;
     }
     @keyframes critOverlay {
       0% { opacity: 0; transform: scale(0.5); }
@@ -925,7 +931,7 @@
       100% { transform: scale(1) rotate(0deg); opacity: 1; }
     }
     .chest-loot-emoji { font-size: 72px; margin-bottom: 12px; }
-    .chest-loot-name { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .chest-loot-name { font-family: 'Russo One', sans-serif; font-size: 16px; margin-bottom: 6px; letter-spacing: 0.3px; }
     .chest-loot-rarity { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
     .chest-loot-power { font-size: 16px; color: #6ba8ff; font-weight: 700; margin-top: 12px; }
     .chest-loot-close {
@@ -948,7 +954,7 @@
       border: 3px solid #888;
     }
     .item-emoji { font-size: 64px; margin-bottom: 12px; }
-    .item-name { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .item-name { font-family: 'Russo One', sans-serif; font-size: 16px; margin-bottom: 6px; letter-spacing: 0.3px; line-height: 1.3; }
     .item-rarity { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 8px; }
     .item-stat { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
     .item-stat.power { color: #f5a623; }
@@ -982,18 +988,18 @@
     .admin-btn:active { background: #2a2e33; }
 
     @media (max-width: 420px) {
-      .top-bar { height: 140px; padding: 0 18px 6px; }
+      .top-bar { height: 155px; padding: 6px 18px 0; }
       .level-circle { width: 52px; height: 52px; }
       .level-circle-value { font-size: 18px; }
-      .level-label { font-size: 9px; bottom: -16px; }
+      .level-label { font-size: 9px; bottom: -18px; }
       .coin-circle { width: 56px; height: 56px; }
       .coin-circle-img { width: 22px; height: 22px; }
       .coin-circle-value { font-size: 12px; }
-      .coin-label { font-size: 9px; bottom: -16px; }
+      .coin-label { font-size: 9px; bottom: -18px; }
       .name-callsign { font-size: 17px; padding: 4px 14px; }
       .name-rank { font-size: 10px; }
-      .stat-row .stat-label { font-size: 12px; }
-      .stat-row .stat-num { font-size: 19px; }
+      .stat-row .stat-label { font-size: 13px; }
+      .stat-row .stat-num { font-size: 20px; }
       .bottom-nav { height: 112px; }
       .bottom-nav-inner { padding: 0 4px 16px; }
       .nav-btn { height: 140px; max-width: 140px; }
@@ -1001,18 +1007,18 @@
       .content { padding: 0 12px 130px; }
     }
     @media (max-width: 360px) {
-      .top-bar { height: 130px; padding: 0 14px 4px; }
+      .top-bar { height: 145px; padding: 4px 14px 0; }
       .level-circle { width: 46px; height: 46px; }
       .level-circle-value { font-size: 16px; }
-      .level-label { font-size: 8px; bottom: -15px; }
+      .level-label { font-size: 8px; bottom: -17px; }
       .coin-circle { width: 50px; height: 50px; }
       .coin-circle-img { width: 20px; height: 20px; }
       .coin-circle-value { font-size: 11px; }
-      .coin-label { font-size: 8px; bottom: -15px; }
+      .coin-label { font-size: 8px; bottom: -17px; }
       .name-callsign { font-size: 15px; padding: 3px 12px; }
       .name-rank { font-size: 9px; }
-      .stat-row .stat-label { font-size: 11px; }
-      .stat-row .stat-num { font-size: 17px; }
+      .stat-row .stat-label { font-size: 12px; }
+      .stat-row .stat-num { font-size: 18px; }
       .bottom-nav { height: 101px; }
       .bottom-nav-inner { padding: 0 2px 14px; }
       .nav-btn { height: 128px; max-width: 128px; }
@@ -1026,7 +1032,6 @@
   <div class="loading-overlay" id="loading">🇺🇦 Завантаження...</div>
   <div class="app-bg"></div>
 
-  <!-- ЕКРАН СТВОРЕННЯ -->
   <div class="creation-overlay hidden" id="creation-overlay">
     <div class="creation-header">
       <div class="creation-title">🇺🇦 Створи свого бійця</div>
@@ -1090,7 +1095,7 @@
         <img class="profile-avatar" id="profile-avatar" src="assets/body.png" alt="Аватар">
         <div class="profile-callsign" id="profile-callsign">«ВонаQua»</div>
         <div class="profile-rank" id="profile-rank">🎖 Новобранець</div>
-      </div>
+              </div>
 
       <div class="profile-section">
         <div class="profile-section-title">📈 Характеристики</div>
@@ -1226,39 +1231,35 @@
   <!-- APP -->
   <div class="app hidden" id="app">
 
-    <!-- ТОП-БАР -->
     <div class="top-bar">
-      <div class="level-circle">
-        <span class="level-circle-value" id="value-level">1</span>
-        <div class="level-label">РІВЕНЬ</div>
-      </div>
       <div class="name-block" id="name-block">
         <div class="name-callsign" id="callsign-title">Боєць</div>
         <div class="name-rank" id="rank-line">🎖 Новобранець</div>
       </div>
-      <div class="coin-circle" id="coin-circle">
-        <img class="coin-circle-img" id="coin-badge-img" src="assets/coin_e.png" alt="E"
-             onerror="this.style.display='none'; document.getElementById('coin-badge-fallback').style.display='block';">
-        <span class="coin-circle-fallback" id="coin-badge-fallback" style="display:none;">💰</span>
-        <span class="coin-circle-value" id="value-e">0</span>
-        <div class="coin-label">Е-БАЛИ</div>
+      <div class="top-circles-row">
+        <div class="level-circle">
+          <span class="level-circle-value" id="value-level">1</span>
+          <div class="level-label">РІВЕНЬ</div>
+        </div>
+        <div class="coin-circle" id="coin-circle">
+          <img class="coin-circle-img" id="coin-badge-img" src="assets/coin_e.png" alt="E"
+               onerror="this.style.display='none'; document.getElementById('coin-badge-fallback').style.display='block';">
+          <span class="coin-circle-fallback" id="coin-badge-fallback" style="display:none;">💰</span>
+          <span class="coin-circle-value" id="value-e">0</span>
+          <div class="coin-label">Е-БАЛИ</div>
+        </div>
       </div>
     </div>
 
-    <!-- ШТОРКА (тільки Потужність + Незламність) -->
-    <div class="stats-curtain">
+    <div class="stats-curtain" id="stats-curtain">
       <div class="stat-row stat-power" id="stat-power">
-        <div class="stat-row-left">
-          <span class="stat-icon">⚡</span>
-          <span class="stat-label">ПОТУЖНІСТЬ</span>
-        </div>
+        <span class="stat-icon">⚡</span>
+        <span class="stat-label">ПОТУЖНІСТЬ</span>
         <span class="stat-num" id="value-power">0</span>
       </div>
       <div class="stat-row stat-defense" id="stat-defense">
-        <div class="stat-row-left">
-          <span class="stat-icon">🛡</span>
-          <span class="stat-label">НЕЗЛАМНІСТЬ</span>
-        </div>
+        <span class="stat-icon">🛡</span>
+        <span class="stat-label">НЕЗЛАМНІСТЬ</span>
         <span class="stat-num" id="value-defense">0</span>
       </div>
     </div>
@@ -1455,6 +1456,14 @@
       document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.tab === tab);
       });
+
+      // Шторка тільки на головній
+      if (tab === 'home') {
+        document.getElementById('stats-curtain').classList.remove('hidden');
+      } else {
+        document.getElementById('stats-curtain').classList.add('hidden');
+      }
+
       const content = document.getElementById('content');
       if (tab === 'home') { content.classList.add('no-scroll'); }
       else { content.classList.remove('no-scroll'); content.scrollTop = 0; }
@@ -1710,7 +1719,7 @@
       openBtn.textContent = canAfford ? `Відкрити за ${chest.price} Е` : `Недостатньо Е`;
       openBtn.disabled = !canAfford;
 
-      document.getElementById('chest-modal-overlay').classList.remove('hidden');
+       document.getElementById('chest-modal-overlay').classList.remove('hidden');
     }
 
     document.getElementById('chest-close-btn').addEventListener('click', () => {
