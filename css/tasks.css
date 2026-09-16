@@ -1,0 +1,102 @@
+/* =========================================================
+   ЗАВДАННЯ
+   ========================================================= */
+.task {
+  background: linear-gradient(135deg, rgba(42, 46, 51, 0.95), rgba(34, 38, 43, 0.95));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 18px 16px; border-radius: 14px;
+  margin-bottom: 12px; border-left: 4px solid #f5a623;
+  cursor: pointer; user-select: none;
+  transition: all 0.2s;
+  position: relative; overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.task::before {
+  content: ""; position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245,166,35,0.5), transparent);
+}
+.task.meme { border-left-color: #6ba8ff; }
+.task.meme::before { background: linear-gradient(90deg, transparent, rgba(107,168,255,0.5), transparent); }
+.task:active:not(.disabled) {
+  background: linear-gradient(135deg, rgba(52, 58, 64, 0.98), rgba(44, 50, 56, 0.98));
+  transform: scale(0.98);
+}
+.task.disabled { opacity: 0.7; border-left-color: #4a4a4a; cursor: pointer; }
+.task.loading { opacity: 0.6; pointer-events: none; }
+.task-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.task-name { font-family: 'Russo One', sans-serif; font-size: 15px; color: #ffffff; letter-spacing: 0.5px; }
+.task-reward {
+  color: #f5a623; font-weight: 800; font-size: 15px; white-space: nowrap;
+  background: rgba(245,166,35,0.12);
+  padding: 4px 10px; border-radius: 8px;
+  border: 1px solid rgba(245,166,35,0.3);
+  text-shadow: 0 0 6px rgba(245,166,35,0.5);
+}
+.task.meme .task-reward { color: #6ba8ff; background: rgba(107,168,255,0.12); border-color: rgba(107,168,255,0.3); text-shadow: 0 0 6px rgba(107,168,255,0.5); }
+.task.disabled .task-reward { color: #666; background: rgba(102,102,102,0.15); border-color: rgba(102,102,102,0.3); text-shadow: none; }
+.task-desc { color: #aaa; font-size: 13px; margin-top: 6px; font-style: italic; line-height: 1.4; }
+.task-desc.available { color: #6ba8ff; font-style: normal; font-weight: 600; text-shadow: 0 0 6px rgba(107,168,255,0.4); }
+.task-progress { margin-top: 12px; height: 6px; background: rgba(26, 29, 33, 0.8); border-radius: 3px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.5); }
+.task-progress-fill { height: 100%; background: linear-gradient(90deg, #f5a623, #f7b84a); width: 0%; transition: width 0.1s linear; box-shadow: 0 0 8px rgba(245,166,35,0.6); }
+.task.meme .task-progress-fill { background: linear-gradient(90deg, #6ba8ff, #8bc0ff); box-shadow: 0 0 8px rgba(107,168,255,0.6); }
+.task-timer { color: #f5a623; font-size: 13px; margin-top: 6px; font-variant-numeric: tabular-nums; font-weight: 700; }
+.task.meme .task-timer { color: #6ba8ff; }
+
+/* =========================================================
+   МОДАЛКА СТІКЕРА (завдання)
+   ========================================================= */
+.sticker-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10, 12, 16, 0.92);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 300; padding: 20px;
+}
+.sticker-overlay.hidden { display: none; }
+.sticker-modal {
+  background: #1a1d21; border-radius: 20px; padding: 20px;
+  max-width: 380px; width: 100%;
+  border: 3px solid #f5a623;
+  box-shadow: 0 0 40px rgba(245,166,35,0.4), 0 20px 60px rgba(0,0,0,0.6);
+  animation: stickerIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-align: center;
+}
+@keyframes stickerIn {
+  0%   { transform: scale(0.6) rotate(-5deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+.sticker-img {
+  width: 100%; border-radius: 12px;
+  display: block; margin-bottom: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  border: 2px solid #2a2e33; min-height: 200px;
+  background: #2a2e33;
+}
+.sticker-reward {
+  font-size: 22px; font-weight: 900;
+  color: #f5a623; margin-bottom: 6px;
+  text-shadow: 0 0 12px rgba(245,166,35,0.6);
+  letter-spacing: 0.5px;
+}
+.sticker-reward.crit {
+  color: #ffd700; font-size: 26px;
+  text-shadow: 0 0 20px #ffd700;
+  animation: critShake 0.5s ease-out;
+}
+@keyframes critShake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-4px); }
+  75%      { transform: translateX(4px); }
+}
+.sticker-subtitle { color: #888; font-size: 13px; margin-bottom: 16px; }
+.sticker-close-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #f5a623, #f7b84a);
+  color: #1a1d21; border: none; padding: 14px;
+  border-radius: 12px; font-weight: 800; font-size: 16px;
+  font-family: inherit; cursor: pointer;
+  box-shadow: 0 4px 12px rgba(245,166,35,0.4);
+}
+.sticker-close-btn:active { transform: scale(0.97); }
