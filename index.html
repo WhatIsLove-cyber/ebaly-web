@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Е-БАЛИ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -113,11 +114,11 @@
       display: flex; flex-direction: column; padding: 0;
     }
 
-    /* ТОП-БАР з top_panel.png */
+    /* ============ ТОП-БАР ============ */
     .top-bar {
       position: relative;
       width: 100%;
-      height: 130px;
+      height: 160px;
       background-image: url('assets/top_panel.png');
       background-size: 100% 100%;
       background-repeat: no-repeat;
@@ -125,16 +126,16 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 24px 12px 24px;
+      padding: 0 24px 8px 24px;
       flex-shrink: 0;
       z-index: 20;
-      margin-bottom: -20px;
+      margin-bottom: -16px;
     }
 
     /* Кружок рівня */
     .level-circle {
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       background: radial-gradient(circle at 35% 30%, #4a3a1a, #1a1410);
       border: 3px solid #f5a623;
@@ -146,11 +147,24 @@
       position: relative;
     }
     .level-circle-value {
-      font-size: 20px;
-      font-weight: 900;
+      font-family: 'Russo One', sans-serif;
+      font-size: 22px;
       color: #f5a623;
       text-shadow: 0 0 8px rgba(245,166,35,0.8);
       font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    .level-label {
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      font-weight: 800;
+      color: #f5a623;
+      letter-spacing: 1px;
+      text-shadow: 0 0 6px rgba(245,166,35,0.7);
+      white-space: nowrap;
     }
 
     /* Нік + ранг по центру */
@@ -160,37 +174,50 @@
       min-width: 0;
       padding: 0 12px;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 20px;
     }
     .name-block:active {
       transform: scale(0.98);
     }
     .name-callsign {
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      background: linear-gradient(135deg, #ffffff 0%, #b8b8b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-family: 'Russo One', sans-serif;
+      font-size: 20px;
+      letter-spacing: 1.5px;
+      color: #fff;
+      text-shadow: 
+        0 0 10px rgba(245,166,35,0.8),
+        0 0 20px rgba(245,166,35,0.4),
+        0 2px 4px rgba(0,0,0,0.8);
+      padding: 5px 18px;
+      border: 2px solid #f5a623;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(245,166,35,0.15) 0%, rgba(245,166,35,0.05) 100%);
+      box-shadow: 
+        0 0 15px rgba(245,166,35,0.5),
+        inset 0 0 10px rgba(245,166,35,0.2);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      text-shadow: 0 0 20px rgba(255,255,255,0.3);
+      max-width: 100%;
     }
     .name-rank {
       font-size: 11px;
       color: #f5a623;
-      margin-top: 2px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       text-shadow: 0 0 6px rgba(245,166,35,0.5);
+      letter-spacing: 0.5px;
     }
 
     /* Кружок Е-балів */
     .coin-circle {
-      width: 60px;
-      height: 60px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
       background: radial-gradient(circle at 35% 30%, #1a3a1a, #0a1a0a);
       border: 3px solid #4caf50;
@@ -201,26 +228,38 @@
       box-shadow: 0 0 15px rgba(76,175,80,0.6), inset 0 -3px 8px rgba(0,0,0,0.5);
       flex-shrink: 0;
       position: relative;
-      padding: 4px 0;
+      padding: 2px 0;
     }
     .coin-circle-img {
-      width: 24px;
-      height: 24px;
+      width: 26px;
+      height: 26px;
       object-fit: contain;
       margin-bottom: -2px;
     }
     .coin-circle-fallback {
-      font-size: 18px;
+      font-size: 20px;
       line-height: 1;
       margin-bottom: -2px;
     }
     .coin-circle-value {
-      font-size: 13px;
-      font-weight: 900;
+      font-family: 'Russo One', sans-serif;
+      font-size: 14px;
       color: #4caf50;
       text-shadow: 0 0 6px rgba(76,175,80,0.8);
       font-variant-numeric: tabular-nums;
       line-height: 1;
+    }
+    .coin-label {
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      font-weight: 800;
+      color: #4caf50;
+      letter-spacing: 1px;
+      text-shadow: 0 0 6px rgba(76,175,80,0.7);
+      white-space: nowrap;
     }
     .coin-circle.pulse { animation: coinPulse 0.5s ease-out; }
     @keyframes coinPulse {
@@ -229,20 +268,12 @@
       100% { transform: scale(1); }
     }
 
-    /* ШТОРКА з 4 показниками */
+    /* ============ ШТОРКА ============ */
     .stats-curtain {
-      background: linear-gradient(180deg, rgba(26,29,33,0.9) 0%, rgba(20,22,26,0.85) 100%);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-top: 2px solid rgba(245,166,35,0.4);
-      border-bottom: 2px solid rgba(245,166,35,0.4);
-      padding: 10px 12px;
-      margin: 0 12px;
-      border-radius: 0 0 16px 16px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      padding: 22px 24px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
       flex-shrink: 0;
       z-index: 15;
       position: relative;
@@ -250,12 +281,8 @@
     .stat-row {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.6px;
-      text-shadow: 0 0 6px currentColor, 0 1px 2px rgba(0,0,0,0.9);
-      text-transform: uppercase;
+      justify-content: space-between;
+      gap: 8px;
       transition: transform 0.15s;
     }
     .stat-row.pulse { animation: textPulse 0.4s ease-out; }
@@ -264,16 +291,24 @@
       40%  { transform: scale(1.12); }
       100% { transform: scale(1); }
     }
-    .stat-row .stat-icon { font-size: 14px; line-height: 1; width: 16px; text-align: center; }
-    .stat-row .stat-num {
-      font-size: 15px; font-weight: 800;
-      font-variant-numeric: tabular-nums;
-      margin-left: auto;
-      text-align: right;
+    .stat-row-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .stat-row .stat-label { font-size: 10px; opacity: 0.9; letter-spacing: 0.8px; }
-    .stat-strength { color: #ff6b6b; }
-    .stat-discipline { color: #ffd700; }
+    .stat-row .stat-icon { font-size: 18px; line-height: 1; }
+    .stat-row .stat-label {
+      font-family: 'Russo One', sans-serif;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px currentColor, 0 1px 3px rgba(0,0,0,0.9);
+    }
+    .stat-row .stat-num {
+      font-family: 'Russo One', sans-serif;
+      font-size: 22px;
+      text-shadow: 0 0 8px currentColor, 0 1px 3px rgba(0,0,0,0.9);
+      font-variant-numeric: tabular-nums;
+    }
     .stat-power { color: #f5a623; }
     .stat-defense { color: #6ba8ff; }
 
@@ -564,28 +599,6 @@
       border-bottom: 1px solid rgba(245,166,35,0.2);
       position: relative;
     }
-    .profile-avatar {
-      width: 100px;
-      height: 130px;
-      object-fit: contain;
-      margin: 0 auto 12px;
-      display: block;
-      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6));
-    }
-    .profile-callsign {
-      font-size: 22px;
-      font-weight: 800;
-      color: #fff;
-      text-shadow: 0 0 12px rgba(245,166,35,0.5);
-      margin-bottom: 4px;
-    }
-    .profile-rank {
-      font-size: 14px;
-      color: #f5a623;
-      text-shadow: 0 0 6px rgba(245,166,35,0.5);
-      margin-bottom: 12px;
-    }
-    /* Місце під шеврон звання (поки порожнє) */
     .profile-chevron-placeholder {
       width: 60px;
       height: 60px;
@@ -597,6 +610,28 @@
       justify-content: center;
       font-size: 24px;
       color: rgba(245,166,35,0.4);
+    }
+    .profile-avatar {
+      width: 100px;
+      height: 130px;
+      object-fit: contain;
+      margin: 0 auto 12px;
+      display: block;
+      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6));
+    }
+    .profile-callsign {
+      font-family: 'Russo One', sans-serif;
+      font-size: 22px;
+      letter-spacing: 1px;
+      color: #fff;
+      text-shadow: 0 0 12px rgba(245,166,35,0.5);
+      margin-bottom: 4px;
+    }
+    .profile-rank {
+      font-size: 14px;
+      color: #f5a623;
+      text-shadow: 0 0 6px rgba(245,166,35,0.5);
+      margin-bottom: 12px;
     }
     .profile-section {
       padding: 16px 20px;
@@ -687,41 +722,16 @@
     .daily-close-btn.hidden { display: none; }
 
     /* СПОРЯДЖЕННЯ */
-    .inventory-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 12px 0;
-    }
+    .inventory-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
     .inv-stat-box {
       background: rgba(42, 46, 51, 0.9);
-      border-radius: 12px;
-      padding: 14px;
-      text-align: center;
+      border-radius: 12px; padding: 14px; text-align: center;
       border: 2px solid rgba(245,166,35,0.3);
     }
-    .inv-stat-box.defense {
-      border-color: rgba(107,168,255,0.3);
-    }
-    .inv-stat-label {
-      font-size: 11px;
-      color: #888;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
-      font-weight: 700;
-    }
-    .inv-stat-value {
-      font-size: 24px;
-      font-weight: 900;
-      color: #f5a623;
-      text-shadow: 0 0 10px rgba(245,166,35,0.6);
-      font-variant-numeric: tabular-nums;
-    }
-    .inv-stat-box.defense .inv-stat-value {
-      color: #6ba8ff;
-      text-shadow: 0 0 10px rgba(107,168,255,0.6);
-    }
+    .inv-stat-box.defense { border-color: rgba(107,168,255,0.3); }
+    .inv-stat-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 700; }
+    .inv-stat-value { font-size: 24px; font-weight: 900; color: #f5a623; text-shadow: 0 0 10px rgba(245,166,35,0.6); font-variant-numeric: tabular-nums; }
+    .inv-stat-box.defense .inv-stat-value { color: #6ba8ff; text-shadow: 0 0 10px rgba(107,168,255,0.6); }
 
     .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 0; }
     .slot {
@@ -738,7 +748,7 @@
     .slot-label { font-size: 10px; color: #666; text-transform: uppercase; margin-bottom: 4px; }
     .slot-emoji { font-size: 26px; }
     .slot-name { font-size: 10px; margin-top: 4px; color: #ccc; line-height: 1.2; }
-    .slot-power { font-size: 11px; color: #6ba8ff; font-weight: 600; margin-top: 2px; }
+    .slot-power { font-size: 11px; font-weight: 600; margin-top: 2px; }
 
     .rarity-common    { border-color: #888 !important; }
     .rarity-uncommon  { border-color: #4caf50 !important; }
@@ -765,7 +775,7 @@
     .inv-item.equipped { opacity: 0.5; }
     .inv-emoji { font-size: 24px; }
     .inv-name { font-size: 10px; margin-top: 4px; color: #ccc; line-height: 1.2; min-height: 24px; }
-    .inv-power { font-size: 11px; color: #6ba8ff; font-weight: 600; margin-top: 2px; }
+    .inv-power { font-size: 11px; font-weight: 600; margin-top: 2px; }
     .inv-sell { font-size: 10px; color: #f5a623; margin-top: 1px; }
     .inv-badge {
       position: absolute; top: 4px; right: 4px;
@@ -972,14 +982,18 @@
     .admin-btn:active { background: #2a2e33; }
 
     @media (max-width: 420px) {
-      .top-bar { height: 110px; padding: 0 18px 10px; }
-      .level-circle { width: 48px; height: 48px; }
-      .level-circle-value { font-size: 17px; }
-      .coin-circle { width: 52px; height: 52px; }
-      .coin-circle-img { width: 20px; height: 20px; }
-      .coin-circle-value { font-size: 11px; }
-      .name-callsign { font-size: 16px; }
+      .top-bar { height: 140px; padding: 0 18px 6px; }
+      .level-circle { width: 52px; height: 52px; }
+      .level-circle-value { font-size: 18px; }
+      .level-label { font-size: 9px; bottom: -16px; }
+      .coin-circle { width: 56px; height: 56px; }
+      .coin-circle-img { width: 22px; height: 22px; }
+      .coin-circle-value { font-size: 12px; }
+      .coin-label { font-size: 9px; bottom: -16px; }
+      .name-callsign { font-size: 17px; padding: 4px 14px; }
       .name-rank { font-size: 10px; }
+      .stat-row .stat-label { font-size: 12px; }
+      .stat-row .stat-num { font-size: 19px; }
       .bottom-nav { height: 112px; }
       .bottom-nav-inner { padding: 0 4px 16px; }
       .nav-btn { height: 140px; max-width: 140px; }
@@ -987,14 +1001,18 @@
       .content { padding: 0 12px 130px; }
     }
     @media (max-width: 360px) {
-      .top-bar { height: 100px; padding: 0 14px 8px; }
-      .level-circle { width: 42px; height: 42px; }
-      .level-circle-value { font-size: 15px; }
-      .coin-circle { width: 46px; height: 46px; }
-      .coin-circle-img { width: 18px; height: 18px; }
-      .coin-circle-value { font-size: 10px; }
-      .name-callsign { font-size: 14px; }
+      .top-bar { height: 130px; padding: 0 14px 4px; }
+      .level-circle { width: 46px; height: 46px; }
+      .level-circle-value { font-size: 16px; }
+      .level-label { font-size: 8px; bottom: -15px; }
+      .coin-circle { width: 50px; height: 50px; }
+      .coin-circle-img { width: 20px; height: 20px; }
+      .coin-circle-value { font-size: 11px; }
+      .coin-label { font-size: 8px; bottom: -15px; }
+      .name-callsign { font-size: 15px; padding: 3px 12px; }
       .name-rank { font-size: 9px; }
+      .stat-row .stat-label { font-size: 11px; }
+      .stat-row .stat-num { font-size: 17px; }
       .bottom-nav { height: 101px; }
       .bottom-nav-inner { padding: 0 2px 14px; }
       .nav-btn { height: 128px; max-width: 128px; }
@@ -1191,14 +1209,14 @@
     </div>
   </div>
 
-  <div class="crit-overlay" id="crit-overlay"><div class="crit-overlay-text">🎉 КРИТ!</div></div>
+  <div class="crit-overlay" id="crit-overlay"><div class="crit-overlay-text">🍀 ОЦЕ ВДАЧА!</div></div>
 
   <div class="chest-overlay hidden" id="chest-overlay">
     <div class="chest-loot" id="chest-loot">
       <div class="chest-loot-emoji" id="loot-emoji">📦</div>
       <div class="chest-loot-name" id="loot-name">Предмет</div>
       <div class="chest-loot-rarity" id="loot-rarity">Common</div>
-      <div class="chest-loot-power" id="loot-power">+0 потужності</div>
+      <div class="chest-loot-power" id="loot-power">+0 до характеристики</div>
       <button class="chest-loot-close" id="loot-close">Забрати</button>
     </div>
   </div>
@@ -1212,6 +1230,7 @@
     <div class="top-bar">
       <div class="level-circle">
         <span class="level-circle-value" id="value-level">1</span>
+        <div class="level-label">РІВЕНЬ</div>
       </div>
       <div class="name-block" id="name-block">
         <div class="name-callsign" id="callsign-title">Боєць</div>
@@ -1222,29 +1241,24 @@
              onerror="this.style.display='none'; document.getElementById('coin-badge-fallback').style.display='block';">
         <span class="coin-circle-fallback" id="coin-badge-fallback" style="display:none;">💰</span>
         <span class="coin-circle-value" id="value-e">0</span>
+        <div class="coin-label">Е-БАЛИ</div>
       </div>
     </div>
 
-    <!-- ШТОРКА -->
+    <!-- ШТОРКА (тільки Потужність + Незламність) -->
     <div class="stats-curtain">
-      <div class="stat-row stat-strength" id="stat-strength">
-        <span class="stat-icon">⚔</span>
-        <span class="stat-label">Сила</span>
-        <span class="stat-num" id="value-strength">10</span>
-      </div>
-      <div class="stat-row stat-discipline" id="stat-discipline">
-        <span class="stat-icon">⭐</span>
-        <span class="stat-label">Дисц.</span>
-        <span class="stat-num" id="value-discipline">10</span>
-      </div>
       <div class="stat-row stat-power" id="stat-power">
-        <span class="stat-icon">⚡</span>
-        <span class="stat-label">Потуж.</span>
+        <div class="stat-row-left">
+          <span class="stat-icon">⚡</span>
+          <span class="stat-label">ПОТУЖНІСТЬ</span>
+        </div>
         <span class="stat-num" id="value-power">0</span>
       </div>
       <div class="stat-row stat-defense" id="stat-defense">
-        <span class="stat-icon">🛡</span>
-        <span class="stat-label">Незлам.</span>
+        <div class="stat-row-left">
+          <span class="stat-icon">🛡</span>
+          <span class="stat-label">НЕЗЛАМНІСТЬ</span>
+        </div>
         <span class="stat-num" id="value-defense">0</span>
       </div>
     </div>
@@ -1557,8 +1571,6 @@
     function render() {
       document.getElementById('value-level').textContent = state.level;
       document.getElementById('value-e').textContent = state.e;
-      document.getElementById('value-strength').textContent = state.strength;
-      document.getElementById('value-discipline').textContent = state.discipline;
       document.getElementById('value-power').textContent = state.power;
       document.getElementById('value-defense').textContent = state.defense;
       document.getElementById('rank-line').textContent = getRank(state.level);
@@ -1726,7 +1738,6 @@
       }
     });
 
-    // ============== РУЛЕТКА ==============
     function runRoulette(chest, wonItem) {
       return new Promise((resolve) => {
         if (rouletteRunning) return resolve();
@@ -1851,8 +1862,8 @@
         render();
 
         pulseEl('coin-circle');
-        if (task.stat === 'strength')   pulseEl('stat-strength');
-        if (task.stat === 'discipline') pulseEl('stat-discipline');
+        if (task.stat === 'strength')   pulseEl('stat-power');
+        if (task.stat === 'discipline') pulseEl('stat-defense');
 
         showStickerModal(data.sticker, data.reward, data.is_crit, data.leveled_up, data.player.rank);
         if (tg.HapticFeedback) {
@@ -1868,7 +1879,7 @@
     function showStickerModal(sticker, reward, isCrit, leveledUp, newRank) {
       if (!sticker) {
         if (leveledUp) showToast(`🎉 Нове звання: ${newRank}!`);
-        else if (isCrit) showToast(`🎉 Оце вдача! +${reward} Е (×3)`, 'crit');
+        else if (isCrit) showToast(`🍀 Оце вдача! +${reward} Е (×3)`, 'crit');
         else showToast(`+${reward} Е`);
         return;
       }
