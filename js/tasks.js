@@ -30,7 +30,7 @@ function renderTaskGroup(type, containerId, countId) {
       ${onCooldown ? `
         <div class="task-progress"><div class="task-progress-fill" style="width:${progressPct}%"></div></div>
         <div class="task-timer" data-timer="${task.id}">⏱ ${formatTime(remaining)}</div>
-      ` : `<div class="task-desc available">🎮 Натисни щоб грати</div>`}
+      ` : `<div class="task-desc available">🎮 v17 — Натисни щоб грати</div>`}
     `;
 
     // Клік завжди відкриває гру (незалежно від кулдауну)
