@@ -3,19 +3,15 @@
 // =========================================================
 
 const G2048_SIZE = 4;
-const G2048_STORAGE = 'game2048_state';
 
 let g2048 = {
   board: [],
   score: 0,
   moves: 0,
   startTime: 0,
-  won: false,
   over: false,
   taskId: null,
-  gameId: '2048',
   threshold: 256,
-  finished: false,
   touchStartX: 0,
   touchStartY: 0,
 };
@@ -28,9 +24,14 @@ function init2048() {
   g2048.score = 0;
   g2048.moves = 0;
   g2048.startTime = Math.floor(Date.now() / 1000);
-  g2048.won = false;
   g2048.over = false;
-  g2048.finished = false;
+
+  // Синхронізуємо з універсальним станом
+  currentGame.score = 0;
+  currentGame.moves = 0;
+  currentGame.startTime = g2048.startTime;
+  currentGame.finished = false;
+
   addRandomTile();
   addRandomTile();
   render2048();
@@ -55,7 +56,6 @@ function render2048() {
   const body = document.getElementById('minigame-body');
   if (!body) return;
 
-  // Якщо сітка ще не створена — створити
   let grid = body.querySelector('.game2048-grid');
   if (!grid) {
     body.innerHTML = '';
@@ -78,7 +78,6 @@ function render2048() {
     attach2048Controls(grid);
   }
 
-  // Оновити плитки
   const tiles = grid.querySelectorAll('.game2048-tile');
   let idx = 0;
   for (let r = 0; r < G2048_SIZE; r++) {
@@ -96,45 +95,33 @@ function render2048() {
     }
   }
 
-  // Info
-  const scoreEl = document.getElementById('minigame-score');
-  const movesEl = document.getElementById('minigame-moves');
-  const thresholdEl = document.getElementById('minigame-threshold');
-  if (scoreEl) scoreEl.textContent = g2048.score;
-  if (movesEl) movesEl.textContent = g2048.moves;
-  if (thresholdEl) thresholdEl.textContent = g2048.threshold;
+  // Info (через універсальні хелпери)
+  currentGame.score = g2048.score;
+  currentGame.moves = g2048.moves;
+  updateMinigameInfo(g2048.score, g2048.moves);
 
   update2048Status();
 }
 
 function update2048Status() {
-  const statusEl = document.getElementById('minigame-status');
-  const claimBtn = document.getElementById('minigame-claim');
-  if (!statusEl || !claimBtn) return;
-
-  statusEl.className = 'minigame-status';
-
-  if (g2048.finished) {
-    statusEl.textContent = '✅ Нагороду забрано! Можеш грати далі без нагород.';
-    statusEl.classList.add('win');
-    claimBtn.disabled = true;
+  if (currentGame.finished) {
+    setMinigameStatus('✅ Нагороду забрано! Можеш грати далі.', 'win');
+    setClaimButtonState(false);
     return;
   }
 
   if (g2048.over) {
-    statusEl.textContent = `💀 Гру закінчено! Очки: ${g2048.score}. Треба ${g2048.threshold}.`;
-    statusEl.classList.add('fail');
-    claimBtn.disabled = true;
+    setMinigameStatus(`💀 Гру закінчено! Очки: ${g2048.score}. Треба ${g2048.threshold}.`, 'fail');
+    setClaimButtonState(false);
     return;
   }
 
   if (g2048.score >= g2048.threshold) {
-    statusEl.textContent = `🎉 Поріг досягнуто! ${g2048.score} / ${g2048.threshold}`;
-    statusEl.classList.add('win');
-    claimBtn.disabled = false;
+    setMinigameStatus(`🎉 Поріг досягнуто! ${g2048.score} / ${g2048.threshold}`, 'win');
+    setClaimButtonState(true);
   } else {
-    statusEl.textContent = `Потрібно ${g2048.threshold} очок. У тебе: ${g2048.score}`;
-    claimBtn.disabled = true;
+    setMinigameStatus(`Потрібно ${g2048.threshold} очок. У тебе: ${g2048.score}`);
+    setClaimButtonState(false);
   }
 }
 
@@ -145,7 +132,6 @@ function move2048(direction) {
   if (g2048.over) return;
 
   const before = JSON.stringify(g2048.board);
-  let moved = false;
   let gained = 0;
 
   const rotate = (board) => {
@@ -178,7 +164,6 @@ function move2048(direction) {
     return result;
   };
 
-  // Повертаємо так, щоб завжди рухати вліво
   let rotations = 0;
   if (direction === 'up')    rotations = 1;
   if (direction === 'right') rotations = 2;
@@ -186,11 +171,7 @@ function move2048(direction) {
 
   let board = g2048.board;
   for (let i = 0; i < rotations; i++) board = rotate(board);
-
-  // Рухаємо кожен рядок вліво
   board = board.map(row => slideLeft(row));
-
-  // Повертаємо назад
   for (let i = 0; i < (4 - rotations) % 4; i++) board = rotate(board);
 
   g2048.board = board;
@@ -207,14 +188,12 @@ function move2048(direction) {
 }
 
 function check2048GameOver() {
-  // Чи є порожні клітинки?
   for (let r = 0; r < G2048_SIZE; r++) {
     for (let c = 0; c < G2048_SIZE; c++) {
       if (g2048.board[r][c] === 0) return false;
     }
   }
 
-  // Чи є можливі об'єднання?
   for (let r = 0; r < G2048_SIZE; r++) {
     for (let c = 0; c < G2048_SIZE; c++) {
       const v = g2048.board[r][c];
@@ -229,13 +208,11 @@ function check2048GameOver() {
 }
 
 // =========================================================
-//  КОНТРОЛІ (клавіатура + свайпи)
+//  КОНТРОЛІ
 // =========================================================
 function attach2048Controls(grid) {
-  // Клавіатура
   document.addEventListener('keydown', handle2048Key);
 
-  // Свайпи
   grid.addEventListener('touchstart', (e) => {
     const t = e.touches[0];
     g2048.touchStartX = t.clientX;
@@ -260,7 +237,6 @@ function attach2048Controls(grid) {
 }
 
 function handle2048Key(e) {
-  // Працює тільки якщо гра відкрита
   const overlay = document.getElementById('minigame-overlay');
   if (!overlay || overlay.classList.contains('hidden')) return;
 
@@ -277,14 +253,15 @@ function handle2048Key(e) {
 }
 
 // =========================================================
-//  ВІДКРИТТЯ / ЗАКРИТТЯ ГРИ
+//  ВІДКРИТТЯ / ЗАКРИТТЯ / ПЕРЕЗАПУСК
 // =========================================================
 function open2048(taskId, threshold) {
   g2048.taskId = taskId;
   g2048.threshold = threshold || 256;
   g2048.finished = false;
 
-  document.getElementById('minigame-title').textContent = '🧩 2048';
+  updateMinigameHeader('🧩 2048', g2048.threshold);
+
   document.getElementById('minigame-overlay').classList.remove('hidden');
 
   init2048();
@@ -292,5 +269,13 @@ function open2048(taskId, threshold) {
 
 function close2048() {
   document.getElementById('minigame-overlay').classList.add('hidden');
+  document.removeEventListener('keydown', handle2048Key);
+}
+
+function restart2048() {
+  init2048();
+}
+
+function cleanup2048() {
   document.removeEventListener('keydown', handle2048Key);
 }
