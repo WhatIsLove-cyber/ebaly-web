@@ -15,12 +15,18 @@ const INIT_DATA = tg.initData;
 //  ЗАВДАННЯ
 // =========================================================
 const TASKS = [
-  { id: 'order',   name: '🧹 Навести порядок',       reward: 5,   cooldown: 60,    stat: 'discipline', type: 'normal', stickers: ["order_1.webp","order_2.webp","order_3.webp","order_4.webp","order_5.webp"] },
-  { id: 'study',   name: '📚 Вивчити матеріал',      reward: 10,  cooldown: 300,   stat: null,         type: 'normal', stickers: ["study_1.webp","study_2.webp","study_3.webp","study_4.webp","study_5.webp"] },
-  { id: 'pt',      name: '🏃 Фізична підготовка',     reward: 15,  cooldown: 600,   stat: 'strength',   type: 'normal', stickers: ["pt_1.webp","pt_2.webp","pt_3.webp","pt_4.webp","pt_5.webp"] },
-  { id: 'charger', name: '🔌 Хто взяв зарядку?',     reward: 5,   cooldown: 3600,  stat: 'discipline', type: 'meme',   stickers: ["charger_1.webp","charger_2.webp","charger_3.webp","charger_4.webp","charger_5.webp"] },
-  { id: 'shovel',  name: '🥄 Пошук лопати',          reward: 8,   cooldown: 7200,  stat: null,         type: 'meme',   stickers: ["shovel_1.webp","shovel_2.webp","shovel_3.webp","shovel_4.webp","shovel_5.webp"] },
-  { id: 'kettle',  name: '☕ Розібратись з чайником', reward: 10,  cooldown: 10800, stat: null,         type: 'meme',   stickers: ["kettle_1.webp","kettle_2.webp","kettle_3.webp","kettle_4.webp","kettle_5.webp"] },
+  { id: 'order',   name: '🧹 Навести порядок',       reward: 5,   cooldown: 60,    stat: 'discipline', type: 'normal', stickers: ["order_1.webp","order_2.webp","order_3.webp","order_4.webp","order_5.webp"],
+    game_id: '2048',     threshold: 256, min_moves: 8,  min_time: 10 },
+  { id: 'study',   name: '📚 Вивчити матеріал',      reward: 10,  cooldown: 300,   stat: null,         type: 'normal', stickers: ["study_1.webp","study_2.webp","study_3.webp","study_4.webp","study_5.webp"],
+    game_id: 'memory',   threshold: 8,   min_moves: 16, min_time: 15 },
+  { id: 'pt',      name: '🏃 Фізична підготовка',     reward: 15,  cooldown: 600,   stat: 'strength',   type: 'normal', stickers: ["pt_1.webp","pt_2.webp","pt_3.webp","pt_4.webp","pt_5.webp"],
+    game_id: 'reaction', threshold: 7,   min_moves: 0,  min_time: 15 },
+  { id: 'charger', name: '🔌 Хто взяв зарядку?',     reward: 5,   cooldown: 3600,  stat: 'discipline', type: 'meme',   stickers: ["charger_1.webp","charger_2.webp","charger_3.webp","charger_4.webp","charger_5.webp"],
+    game_id: 'snake',    threshold: 15,  min_moves: 15, min_time: 20 },
+  { id: 'shovel',  name: '🥄 Пошук лопати',          reward: 8,   cooldown: 7200,  stat: null,         type: 'meme',   stickers: ["shovel_1.webp","shovel_2.webp","shovel_3.webp","shovel_4.webp","shovel_5.webp"],
+    game_id: 'puzzle',   threshold: 1,   min_moves: 20, min_time: 15 },
+  { id: 'kettle',  name: '☕ Розібратись з чайником', reward: 10,  cooldown: 10800, stat: null,         type: 'meme',   stickers: ["kettle_1.webp","kettle_2.webp","kettle_3.webp","kettle_4.webp","kettle_5.webp"],
+    game_id: 'sudoku',   threshold: 1,   min_moves: 0,  min_time: 20 },
 ];
 
 // =========================================================
