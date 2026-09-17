@@ -72,7 +72,9 @@ function openMinigame(task) {
     case 'reaction':
       openReaction(task.id, threshold);
       break;
-    // case 'memory':   openMemory(task.id, threshold);   break;
+    case 'memory':
+      openMemory(task.id, threshold);
+      break;
     // case 'snake':    openSnake(task.id, threshold);    break;
     // case 'puzzle':   openPuzzle(task.id, threshold);   break;
     // case 'sudoku':   openSudoku(task.id, threshold);   break;
@@ -174,6 +176,9 @@ function closeMinigame() {
   }
   if (currentGame.gameId === 'reaction' && typeof cleanupReaction === 'function') {
     cleanupReaction();
+  }
+  if (currentGame.gameId === 'memory' && typeof cleanupMemory === 'function') {
+    cleanupMemory();
   }
 }
 
@@ -285,6 +290,14 @@ function initTasks() {
         currentGame.startTime = Math.floor(Date.now() / 1000);
         setClaimButtonState(false);
         restartReaction();
+      }
+      if (currentGame.gameId === 'memory') {
+        currentGame.finished = false;
+        currentGame.score = 0;
+        currentGame.moves = 0;
+        currentGame.startTime = Math.floor(Date.now() / 1000);
+        setClaimButtonState(false);
+        restartMemory();
       }
     });
   }

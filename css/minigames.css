@@ -348,3 +348,99 @@
   .game-reaction-field { max-width: 280px; height: 280px; }
   .game-reaction-target { width: 56px; height: 56px; font-size: 24px; }
 }
+/* =========================================================
+   MEMORY (знайди пару)
+   ========================================================= */
+.game-memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+.game-memory-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.game-memory-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.game-memory-card.matched {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.game-memory-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  font-size: 32px;
+  line-height: 1;
+}
+
+/* Задня сторона (сорочка) */
+.game-memory-back {
+  background: linear-gradient(135deg, #4a3a1a, #2a1a0a);
+  border: 2px solid #f5a623;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4), inset 0 -2px 6px rgba(0,0,0,0.5);
+  color: #f5a623;
+  font-family: 'Russo One', sans-serif;
+  font-size: 24px;
+}
+
+/* Передня сторона (обличчя) */
+.game-memory-front {
+  background: linear-gradient(135deg, #2a2e33, #1a1d21);
+  border: 2px solid #4a4a4a;
+  transform: rotateY(180deg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.game-memory-card.matched .game-memory-front {
+  border-color: #4caf50;
+  box-shadow: 0 0 16px rgba(76,175,80,0.6);
+}
+
+/* Stats */
+.game-memory-stats {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 16px;
+  font-family: 'Russo One', sans-serif;
+  font-size: 14px;
+}
+.game-memory-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #f5a623;
+}
+.game-memory-stat .val { color: #fff; }
+
+@media (max-width: 420px) {
+  .game-memory-grid { max-width: 300px; gap: 8px; }
+  .game-memory-face { font-size: 28px; }
+  .game-memory-back { font-size: 20px; }
+}
+@media (max-width: 360px) {
+  .game-memory-grid { max-width: 260px; gap: 6px; }
+  .game-memory-face { font-size: 24px; }
+}
