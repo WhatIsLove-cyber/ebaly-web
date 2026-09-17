@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="css/modals.css">
   <link rel="stylesheet" href="css/craft.css">
   <link rel="stylesheet" href="css/feed.css">
+  <link rel="stylesheet" href="css/minigames.css">
 </head>
 <body>
 
@@ -176,6 +177,36 @@
   <div class="chat-fab hidden" id="chat-fab">
     💬
     <div class="chat-fab-badge hidden" id="chat-fab-badge">0</div>
+  </div>
+
+  <!-- МІНІ-ГРА -->
+  <div class="minigame-overlay hidden" id="minigame-overlay">
+    <div class="minigame-header">
+      <div class="minigame-title" id="minigame-title">🎮 Гра</div>
+      <button class="minigame-close" id="minigame-close">×</button>
+    </div>
+    <div class="minigame-info" id="minigame-info">
+      <div class="minigame-info-box">
+        <div class="minigame-info-label">Очки</div>
+        <div class="minigame-info-value" id="minigame-score">0</div>
+      </div>
+      <div class="minigame-info-box">
+        <div class="minigame-info-label">Ходи</div>
+        <div class="minigame-info-value" id="minigame-moves">0</div>
+      </div>
+      <div class="minigame-info-box threshold">
+        <div class="minigame-info-label">Треба</div>
+        <div class="minigame-info-value" id="minigame-threshold">0</div>
+      </div>
+    </div>
+    <div class="minigame-body" id="minigame-body">
+      <!-- Гра рендериться тут -->
+    </div>
+    <div class="minigame-status" id="minigame-status">Грай і досягни порогу!</div>
+    <div class="minigame-actions">
+      <button class="minigame-btn secondary" id="minigame-restart">🔄 Заново</button>
+      <button class="minigame-btn primary" id="minigame-claim" disabled>🎁 Забрати нагороду</button>
+    </div>
   </div>
 
   <!-- СТРІЧКА -->
