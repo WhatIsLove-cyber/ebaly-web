@@ -44,7 +44,7 @@ body {
 .top-bar {
   position: relative;
   width: 100%;
-  height: 115px;
+  height: 80px;
   background-image: url('../assets/top_panel.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -53,10 +53,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 2px 18px 0 18px;
+  padding: 0 18px 0 18px;
   flex-shrink: 0;
   z-index: 20;
-  margin-bottom: -10px;
+  margin-bottom: -30px;
 }
 
 .name-block {
@@ -72,14 +72,14 @@ body {
 .name-block:active { transform: scale(0.98); }
 .name-callsign {
   font-family: 'Russo One', sans-serif;
-  font-size: 17px;
+  font-size: 15px;
   letter-spacing: 1.2px;
   color: #fff;
   text-shadow: 
     0 0 10px rgba(245,166,35,0.8),
     0 0 20px rgba(245,166,35,0.4),
     0 2px 4px rgba(0,0,0,0.8);
-  padding: 3px 14px;
+  padding: 2px 12px;
   border: 2px solid #f5a623;
   border-radius: 16px;
   background: linear-gradient(135deg, rgba(245,166,35,0.15) 0%, rgba(245,166,35,0.05) 100%);
@@ -92,13 +92,14 @@ body {
   max-width: 90%;
 }
 .name-rank {
-  font-size: 10px;
+  font-size: 9px;
   color: #f5a623;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-shadow: 0 0 6px rgba(245,166,35,0.5);
   letter-spacing: 0.5px;
+  margin-top: -1px;
 }
 
 .top-circles-row {
@@ -106,14 +107,14 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-top: 6px;
+  margin-top: 2px;
   padding: 0 4px;
 }
 
 /* Кружок рівня */
 .level-circle {
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
   aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #4a3a1a, #1a1410);
@@ -127,7 +128,7 @@ body {
 }
 .level-circle-value {
   font-family: 'Russo One', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   color: #f5a623;
   text-shadow: 0 0 8px rgba(245,166,35,0.8);
   font-variant-numeric: tabular-nums;
@@ -135,11 +136,11 @@ body {
 }
 .level-label {
   position: absolute;
-  bottom: -16px;
+  bottom: -13px;
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Russo One', sans-serif;
-  font-size: 9px;
+  font-size: 8px;
   color: #f5a623;
   letter-spacing: 0.8px;
   text-shadow: 0 0 6px rgba(245,166,35,0.7);
@@ -148,8 +149,8 @@ body {
 
 /* Кружок Е */
 .coin-circle {
-  width: 52px;
-  height: 52px;
+  width: 46px;
+  height: 46px;
   aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #1a3a1a, #0a1a0a);
@@ -176,7 +177,7 @@ body {
 }
 .coin-circle-value {
   font-family: 'Russo One', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   color: #4caf50;
   text-shadow: 0 0 6px rgba(76,175,80,0.8);
   font-variant-numeric: tabular-nums;
@@ -184,11 +185,11 @@ body {
 }
 .coin-label {
   position: absolute;
-  bottom: -16px;
+  bottom: -13px;
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Russo One', sans-serif;
-  font-size: 9px;
+  font-size: 8px;
   color: #4caf50;
   letter-spacing: 0.8px;
   text-shadow: 0 0 6px rgba(76,175,80,0.7);
@@ -205,11 +206,11 @@ body {
    ШТОРКА (Потужність / Незламність) — стиснута
    ========================================================= */
 .stats-curtain {
-  padding: 6px 20px 4px;
+  padding: 2px 20px 2px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 1px;
   flex-shrink: 0;
   z-index: 15;
   position: relative;
@@ -260,7 +261,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  margin-top: -10px;
+  margin-top: -25px;
 }
 .home-scene {
   flex: 1; position: relative;
@@ -438,7 +439,7 @@ body {
   .level-circle-value { font-size: 16px; }
   .level-label { font-size: 8px; bottom: -15px; }
   .coin-circle { width: 48px; height: 48px; }
-  .coin-circle-img { width: 20px; height: 20px; }
+  .coin-circle-img { width: 18px; height: 18px; }
   .coin-circle-value { font-size: 10px; }
   .coin-label { font-size: 8px; bottom: -15px; }
   .name-callsign { font-size: 15px; padding: 3px 12px; }

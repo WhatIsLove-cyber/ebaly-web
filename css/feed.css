@@ -4,7 +4,7 @@
 .chat-fab {
   position: fixed;
   right: 18px;
-  bottom: 130px;
+  bottom: 230px;
   width: 62px; height: 62px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #f5a623, #c47f0f);
@@ -290,13 +290,13 @@
   .chat-fab {
     width: 56px; height: 56px;
     font-size: 26px;
-    bottom: 115px; right: 14px;
+    bottom: 210px; right: 14px;
   }
 }
 @media (max-width: 360px) {
   .chat-fab {
     width: 52px; height: 52px;
     font-size: 24px;
-    bottom: 105px; right: 12px;
+    bottom: 195px; right: 12px;
   }
 }
