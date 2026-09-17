@@ -11,6 +11,11 @@ tg.ready();
 tg.expand();
 const INIT_DATA = tg.initData;
 
+// Вимикаємо закриття свайпом вниз (для ігор)
+if (typeof tg.disableVerticalSwipes === 'function') {
+  tg.disableVerticalSwipes();
+}
+
 // =========================================================
 //  ЗАВДАННЯ
 // =========================================================
