@@ -52,3 +52,18 @@ let rouletteRunning = false;
 
 // Таймер перевірки позивного
 let callsignCheckTimer = null;
+
+// =========================================================
+//  УНІВЕРСАЛЬНИЙ СТАН МІНІ-ГРИ
+//  (для всіх ігор: 2048, reaction, memory, snake, puzzle, sudoku)
+// =========================================================
+let currentGame = {
+  gameId: null,       // '2048', 'reaction', ...
+  taskId: null,       // 'order', 'pt', ...
+  threshold: 0,
+  score: 0,
+  moves: 0,
+  startTime: 0,
+  finished: false,    // чи вже отримано нагороду в цій сесії
+  active: false,      // чи гра зараз відкрита
+};

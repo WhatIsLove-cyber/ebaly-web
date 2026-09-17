@@ -30,7 +30,7 @@ function renderTaskGroup(type, containerId, countId) {
       ${onCooldown ? `
         <div class="task-progress"><div class="task-progress-fill" style="width:${progressPct}%"></div></div>
         <div class="task-timer" data-timer="${task.id}">⏱ ${formatTime(remaining)}</div>
-      ` : `<div class="task-desc available">🎮 v17 — Натисни щоб грати</div>`}
+      ` : `<div class="task-desc available">🎮 Натисни щоб грати</div>`}
     `;
 
     // Клік завжди відкриває гру (незалежно від кулдауну)
@@ -54,20 +54,38 @@ function openMinigame(task) {
   const gameId = task.game_id;
   const threshold = task.threshold;
 
-  if (gameId === '2048') {
-    open2048(task.id, threshold);
-    return;
-  }
+  // Скинути універсальний стан
+  currentGame.gameId = gameId;
+  currentGame.taskId = task.id;
+  currentGame.threshold = threshold;
+  currentGame.score = 0;
+  currentGame.moves = 0;
+  currentGame.startTime = Math.floor(Date.now() / 1000);
+  currentGame.finished = false;
+  currentGame.active = true;
 
-  // Інші ігри ще не готові
-  showToast('🎮 Ця гра ще в розробці', 'error');
+  // Відкрити відповідну гру
+  switch (gameId) {
+    case '2048':
+      open2048(task.id, threshold);
+      break;
+    case 'reaction':
+      openReaction(task.id, threshold);
+      break;
+    // case 'memory':   openMemory(task.id, threshold);   break;
+    // case 'snake':    openSnake(task.id, threshold);    break;
+    // case 'puzzle':   openPuzzle(task.id, threshold);   break;
+    // case 'sudoku':   openSudoku(task.id, threshold);   break;
+    default:
+      showToast('🎮 Ця гра ще в розробці', 'error');
+  }
 }
 
 // =========================================================
-//  НАГОРОДА ЗА ГРУ
+//  НАГОРОДА ЗА ГРУ (універсальна)
 // =========================================================
 async function claimMinigameReward() {
-  if (!g2048.taskId) return;
+  if (!currentGame.taskId || !currentGame.gameId) return;
 
   const claimBtn = document.getElementById('minigame-claim');
   if (claimBtn) {
@@ -75,28 +93,26 @@ async function claimMinigameReward() {
     claimBtn.textContent = '⏳ Перевіряємо...';
   }
 
-  const elapsed = Math.floor(Date.now() / 1000) - g2048.startTime;
+  const elapsed = Math.floor(Date.now() / 1000) - currentGame.startTime;
 
   try {
     const data = await api("/api/minigame/finish", {
       method: "POST",
       body: JSON.stringify({
-        game_id: g2048.gameId,
-        score: g2048.score,
-        moves: g2048.moves,
+        game_id: currentGame.gameId,
+        score: currentGame.score,
+        moves: currentGame.moves,
         time: elapsed,
       }),
     });
 
-    // =================================================
-    //  Варіант 1: Нагороду видано
-    // =================================================
+    // Нагороду видано
     if (data.success) {
       applyServerPlayer(data.player);
       state.power = data.power || state.power;
       state.defense = data.defense || state.defense;
 
-      g2048.finished = true;
+      currentGame.finished = true;
 
       if (claimBtn) {
         claimBtn.textContent = '✅ Забрано';
@@ -108,15 +124,12 @@ async function claimMinigameReward() {
 
       if (tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
 
-      // Закрити гру і показати стикер
-      close2048();
+      closeMinigame();
       showStickerModal(data.sticker, data.reward, data.is_crit, data.leveled_up, data.player.rank);
       return;
     }
 
-    // =================================================
-    //  Варіант 2: Кулдаун
-    // =================================================
+    // Кулдаун
     if (data.reason === 'cooldown') {
       const left = data.cooldown_until - Math.floor(Date.now() / 1000);
       const statusEl = document.getElementById('minigame-status');
@@ -132,9 +145,7 @@ async function claimMinigameReward() {
       return;
     }
 
-    // =================================================
-    //  Варіант 3: Нижче порогу або чит
-    // =================================================
+    // Нижче порогу або чит
     if (claimBtn) {
       claimBtn.textContent = '🎁 Забрати нагороду';
       claimBtn.disabled = false;
@@ -148,6 +159,58 @@ async function claimMinigameReward() {
     }
     showToast("❌ " + e.message, 'error');
   }
+}
+
+// =========================================================
+//  УНІВЕРСАЛЬНЕ ЗАКРИТТЯ МІНІ-ГРИ
+// =========================================================
+function closeMinigame() {
+  currentGame.active = false;
+  document.getElementById('minigame-overlay').classList.add('hidden');
+
+  // Cleanup для конкретної гри
+  if (currentGame.gameId === '2048' && typeof cleanup2048 === 'function') {
+    cleanup2048();
+  }
+  if (currentGame.gameId === 'reaction' && typeof cleanupReaction === 'function') {
+    cleanupReaction();
+  }
+}
+
+// =========================================================
+//  ХЕЛПЕРИ ДЛЯ ГРИ
+// =========================================================
+function updateMinigameHeader(title, threshold) {
+  const titleEl = document.getElementById('minigame-title');
+  const thresholdEl = document.getElementById('minigame-threshold');
+  const scoreEl = document.getElementById('minigame-score');
+  const movesEl = document.getElementById('minigame-moves');
+
+  if (titleEl) titleEl.textContent = title;
+  if (thresholdEl) thresholdEl.textContent = threshold;
+  if (scoreEl) scoreEl.textContent = '0';
+  if (movesEl) movesEl.textContent = '0';
+}
+
+function updateMinigameInfo(score, moves) {
+  const scoreEl = document.getElementById('minigame-score');
+  const movesEl = document.getElementById('minigame-moves');
+  if (scoreEl) scoreEl.textContent = score;
+  if (movesEl) movesEl.textContent = moves;
+}
+
+function setMinigameStatus(text, modifier = '') {
+  const statusEl = document.getElementById('minigame-status');
+  if (!statusEl) return;
+  statusEl.textContent = text;
+  statusEl.className = 'minigame-status' + (modifier ? ' ' + modifier : '');
+}
+
+function setClaimButtonState(enabled, text) {
+  const claimBtn = document.getElementById('minigame-claim');
+  if (!claimBtn) return;
+  claimBtn.disabled = !enabled;
+  claimBtn.textContent = text || '🎁 Забрати нагороду';
 }
 
 // =========================================================
@@ -189,7 +252,7 @@ function showStickerModal(sticker, reward, isCrit, leveledUp, newRank) {
 //  ІНІЦІАЛІЗАЦІЯ
 // =========================================================
 function initTasks() {
-  // Кнопка закриття стікера
+  // Стікер — закрити
   const closeBtn = document.getElementById('sticker-close');
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
@@ -197,29 +260,36 @@ function initTasks() {
     });
   }
 
-  // Кнопки міні-гри
+  // Гра — закрити
   const mgClose = document.getElementById('minigame-close');
   if (mgClose) {
-    mgClose.addEventListener('click', () => {
-      close2048();
-    });
+    mgClose.addEventListener('click', closeMinigame);
   }
 
+  // Гра — заново
   const mgRestart = document.getElementById('minigame-restart');
   if (mgRestart) {
     mgRestart.addEventListener('click', () => {
-      if (g2048.taskId) {
-        g2048.finished = false;
-        const claimBtn = document.getElementById('minigame-claim');
-        if (claimBtn) {
-          claimBtn.disabled = true;
-          claimBtn.textContent = '🎁 Забрати нагороду';
-        }
-        init2048();
+      if (currentGame.gameId === '2048') {
+        currentGame.finished = false;
+        currentGame.score = 0;
+        currentGame.moves = 0;
+        currentGame.startTime = Math.floor(Date.now() / 1000);
+        setClaimButtonState(false);
+        restart2048();
+      }
+      if (currentGame.gameId === 'reaction') {
+        currentGame.finished = false;
+        currentGame.score = 0;
+        currentGame.moves = 0;
+        currentGame.startTime = Math.floor(Date.now() / 1000);
+        setClaimButtonState(false);
+        restartReaction();
       }
     });
   }
 
+  // Гра — забрати нагороду
   const mgClaim = document.getElementById('minigame-claim');
   if (mgClaim) {
     mgClaim.addEventListener('click', claimMinigameReward);
