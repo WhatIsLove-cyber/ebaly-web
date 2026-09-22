@@ -41,29 +41,7 @@ function renderInventory() {
   }
 
   // Інвентар (grid предметів)
-  const invEl = document.getElementById('inventory-container');
-  if (invEl) {
-    invEl.innerHTML = '';
-    const countEl = document.getElementById('inv-count');
-    if (countEl) countEl.textContent = inventory.length;
-
-    inventory.forEach(item => {
-      const div = document.createElement('div');
-      div.className = 'inv-item rarity-' + item.rarity + (item.equipped ? ' equipped' : '');
-      const isPower = SLOTS_POWER.includes(item.slot);
-      const statColor = isPower ? '#f5a623' : '#6ba8ff';
-
-      div.innerHTML = `
-        ${item.equipped ? '<div class="inv-badge">✓</div>' : ''}
-        <div class="inv-emoji">${item.emoji}</div>
-        <div class="inv-name">${item.name}</div>
-        <div class="inv-power" style="color:${statColor}">+${item.power}</div>
-        <div class="inv-sell">💰 ${item.sell_price}</div>
-      `;
-      div.addEventListener('click', () => openItemModal(item));
-      invEl.appendChild(div);
-    });
-  }
+ let inventorySort = 'time';   // 'time' | 'rarity'
 }
 
 // =========================================================
@@ -237,3 +215,12 @@ function initInventory() {
     });
   }
 }
+  // Сортування
+  document.querySelectorAll('.inv-sort-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.inv-sort-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      inventorySort = btn.dataset.sort;
+      renderInventory();
+    });
+  });

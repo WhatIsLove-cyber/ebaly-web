@@ -67,3 +67,4 @@ let currentGame = {
   finished: false,    // чи вже отримано нагороду в цій сесії
   active: false,      // чи гра зараз відкрита
 };
+let inventorySort = 'time';   // 'time' | 'rarity'

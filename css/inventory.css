@@ -129,3 +129,27 @@
   font-size: 10px; background: #4caf50; color: white;
   padding: 1px 4px; border-radius: 4px;
 }
+.inv-sort {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.inv-sort-btn {
+  flex: 1;
+  background: rgba(42,46,51,0.9);
+  border: 2px solid #343a40;
+  color: #888;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.inv-sort-btn.active {
+  border-color: #f5a623;
+  color: #f5a623;
+  background: rgba(245,166,35,0.1);
+}
+.inv-sort-btn:active { transform: scale(0.97); }
