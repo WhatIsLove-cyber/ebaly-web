@@ -444,3 +444,160 @@
   .game-memory-grid { max-width: 260px; gap: 6px; }
   .game-memory-face { font-size: 24px; }
 }
+/* =========================================================
+   ЗМІЙКА — кабель збирає батарейки
+   ========================================================= */
+.game-snake-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.game-snake-field {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 1;
+  background: #1a1d21;
+  border-radius: 12px;
+  border: 2px solid #343a40;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 2px 6px rgba(0,0,0,0.4);
+  display: grid;
+  padding: 4px;
+}
+
+.game-snake-cell {
+  border-radius: 2px;
+  background: rgba(42,46,51,0.4);
+  transition: background 0.08s;
+  position: relative;
+}
+
+/* Голова — USB-конектор з блискавкою */
+.game-snake-cell.head {
+  background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
+  border: 2px solid #f5a623;
+  box-shadow: 0 0 8px rgba(245,166,35,0.8);
+  border-radius: 4px;
+  z-index: 2;
+}
+.game-snake-cell.head::after {
+  content: '⚡';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #f5a623;
+  text-shadow: 0 0 4px #f5a623;
+}
+
+/* Тіло — кабель */
+.game-snake-cell.body {
+  background: linear-gradient(135deg, #3a2a1a, #1a1a1a);
+  border: 1px solid rgba(245,166,35,0.5);
+  border-radius: 3px;
+}
+.game-snake-cell.body::after {
+  content: '';
+  position: absolute;
+  inset: 30%;
+  background: #f5a623;
+  border-radius: 50%;
+  opacity: 0.6;
+  box-shadow: 0 0 3px #f5a623;
+}
+
+/* Батарейка — їжа */
+.game-snake-cell.food {
+  background: radial-gradient(circle at 35% 30%, #4caf50, #2a6a2a);
+  border: 2px solid #66bb6a;
+  box-shadow: 0 0 12px rgba(76,175,80,0.8);
+  border-radius: 50%;
+  animation: snakeFoodPulse 0.8s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  z-index: 1;
+}
+.game-snake-cell.food::after {
+  content: '🔋';
+}
+@keyframes snakeFoodPulse {
+  0%, 100% { transform: scale(0.85); }
+  50%      { transform: scale(1); }
+}
+
+/* Stats */
+.game-snake-stats {
+  display: flex;
+  gap: 20px;
+  font-family: 'Russo One', sans-serif;
+  font-size: 14px;
+}
+.game-snake-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #f5a623;
+}
+.game-snake-stat .val { color: #fff; }
+
+/* D-pad */
+.game-snake-dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 56px);
+  grid-template-rows: repeat(3, 56px);
+  gap: 6px;
+  margin-top: 8px;
+}
+.game-snake-dpad-btn {
+  background: linear-gradient(135deg, #2a2e33, #1a1d21);
+  border: 2px solid #f5a623;
+  border-radius: 12px;
+  color: #f5a623;
+  font-size: 22px;
+  font-family: inherit;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  transition: transform 0.1s, background 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+.game-snake-dpad-btn:active {
+  transform: scale(0.92);
+  background: linear-gradient(135deg, #f5a623, #c47f0f);
+  color: #1a1d21;
+}
+.game-snake-dpad-btn.up    { grid-column: 2; grid-row: 1; }
+.game-snake-dpad-btn.left  { grid-column: 1; grid-row: 2; }
+.game-snake-dpad-btn.down  { grid-column: 2; grid-row: 3; }
+.game-snake-dpad-btn.right { grid-column: 3; grid-row: 2; }
+
+@media (max-width: 420px) {
+  .game-snake-field { max-width: 300px; }
+  .game-snake-dpad {
+    grid-template-columns: repeat(3, 48px);
+    grid-template-rows: repeat(3, 48px);
+    gap: 5px;
+  }
+  .game-snake-dpad-btn { font-size: 20px; border-radius: 10px; }
+}
+@media (max-width: 360px) {
+  .game-snake-field { max-width: 260px; }
+  .game-snake-dpad {
+    grid-template-columns: repeat(3, 44px);
+    grid-template-rows: repeat(3, 44px);
+  }
+  .game-snake-dpad-btn { font-size: 18px; }
+}

@@ -75,7 +75,9 @@ function openMinigame(task) {
     case 'memory':
       openMemory(task.id, threshold);
       break;
-    // case 'snake':    openSnake(task.id, threshold);    break;
+    case 'snake':
+      openSnake(task.id, threshold);
+      break;
     // case 'puzzle':   openPuzzle(task.id, threshold);   break;
     // case 'sudoku':   openSudoku(task.id, threshold);   break;
     default:
@@ -179,6 +181,9 @@ function closeMinigame() {
   }
   if (currentGame.gameId === 'memory' && typeof cleanupMemory === 'function') {
     cleanupMemory();
+  }
+    if (currentGame.gameId === 'snake' && typeof cleanupSnake === 'function') {
+    cleanupSnake();
   }
 }
 
@@ -298,6 +303,14 @@ function initTasks() {
         currentGame.startTime = Math.floor(Date.now() / 1000);
         setClaimButtonState(false);
         restartMemory();
+      }
+            if (currentGame.gameId === 'snake') {
+        currentGame.finished = false;
+        currentGame.score = 0;
+        currentGame.moves = 0;
+        currentGame.startTime = Math.floor(Date.now() / 1000);
+        setClaimButtonState(false);
+        restartSnake();
       }
     });
   }
