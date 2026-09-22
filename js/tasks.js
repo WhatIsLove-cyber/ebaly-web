@@ -79,7 +79,9 @@ function openMinigame(task) {
       openSnake(task.id, threshold);
       break;
     // case 'puzzle':   openPuzzle(task.id, threshold);   break;
-    // case 'sudoku':   openSudoku(task.id, threshold);   break;
+    case 'sudoku':
+      openSudoku(task.id, threshold);
+      break;
     default:
       showToast('🎮 Ця гра ще в розробці', 'error');
   }
@@ -184,6 +186,9 @@ function closeMinigame() {
   }
     if (currentGame.gameId === 'snake' && typeof cleanupSnake === 'function') {
     cleanupSnake();
+  }
+    if (currentGame.gameId === 'sudoku' && typeof cleanupSudoku === 'function') {
+    cleanupSudoku();
   }
 }
 
@@ -304,13 +309,21 @@ function initTasks() {
         setClaimButtonState(false);
         restartMemory();
       }
-            if (currentGame.gameId === 'snake') {
+      if (currentGame.gameId === 'snake') {
         currentGame.finished = false;
         currentGame.score = 0;
         currentGame.moves = 0;
         currentGame.startTime = Math.floor(Date.now() / 1000);
         setClaimButtonState(false);
         restartSnake();
+      }
+      if (currentGame.gameId === 'sudoku') {
+        currentGame.finished = false;
+        currentGame.score = 0;
+        currentGame.moves = 0;
+        currentGame.startTime = Math.floor(Date.now() / 1000);
+        setClaimButtonState(false);
+        restartSudoku();
       }
     });
   }

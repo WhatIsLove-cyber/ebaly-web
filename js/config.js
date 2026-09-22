@@ -28,8 +28,8 @@ const TASKS = [
     game_id: 'reaction', threshold: 7,   min_moves: 0,  min_time: 15 },
   { id: 'charger', name: '🔌 Хто взяв зарядку?',     reward: 5,   cooldown: 3600,  stat: 'discipline', type: 'meme',   stickers: ["charger_1.webp","charger_2.webp","charger_3.webp","charger_4.webp","charger_5.webp"],
     game_id: 'snake',    threshold: 7,  min_moves: 7, min_time: 5 },
-  { id: 'shovel',  name: '🥄 Пошук лопати',          reward: 8,   cooldown: 7200,  stat: null,         type: 'meme',   stickers: ["shovel_1.webp","shovel_2.webp","shovel_3.webp","shovel_4.webp","shovel_5.webp"],
-    game_id: 'puzzle',   threshold: 1,   min_moves: 20, min_time: 15 },
+  { id: 'shovel',  name: '🥄 Пошук лопати',          reward: 8,   cooldown: 7200,  stat: null,         type: 'meme',   stickers: [...],
+    game_id: 'sudoku',   threshold: 1,   min_moves: 5,  min_time: 10 },
   { id: 'kettle',  name: '☕ Розібратись з чайником', reward: 10,  cooldown: 10800, stat: null,         type: 'meme',   stickers: ["kettle_1.webp","kettle_2.webp","kettle_3.webp","kettle_4.webp","kettle_5.webp"],
     game_id: 'sudoku',   threshold: 1,   min_moves: 0,  min_time: 20 },
 ];
