@@ -41,7 +41,40 @@ function renderInventory() {
   }
 
   // Інвентар (grid предметів)
- let inventorySort = 'time';   // 'time' | 'rarity'
+  const invEl = document.getElementById('inventory-container');
+  if (invEl) {
+    invEl.innerHTML = '';
+    const countEl = document.getElementById('inv-count');
+    if (countEl) countEl.textContent = inventory.length;
+
+    // Сортування
+    const sortedInventory = [...inventory].sort((a, b) => {
+      if (inventorySort === 'rarity') {
+        const order = { legendary: 0, epic: 1, rare: 2, uncommon: 3, common: 4 };
+        const diff = (order[a.rarity] ?? 99) - (order[b.rarity] ?? 99);
+        if (diff !== 0) return diff;
+        return b.inv_id - a.inv_id;
+      }
+      return b.inv_id - a.inv_id;
+    });
+
+    sortedInventory.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'inv-item rarity-' + item.rarity + (item.equipped ? ' equipped' : '');
+      const isPower = SLOTS_POWER.includes(item.slot);
+      const statColor = isPower ? '#f5a623' : '#6ba8ff';
+
+      div.innerHTML = `
+        ${item.equipped ? '<div class="inv-badge">✓</div>' : ''}
+        <div class="inv-emoji">${item.emoji}</div>
+        <div class="inv-name">${item.name}</div>
+        <div class="inv-power" style="color:${statColor}">+${item.power}</div>
+        <div class="inv-sell">💰 ${item.sell_price}</div>
+      `;
+      div.addEventListener('click', () => openItemModal(item));
+      invEl.appendChild(div);
+    });
+  }
 }
 
 // =========================================================
@@ -214,8 +247,8 @@ function initInventory() {
       }
     });
   }
-}
-  // Сортування
+
+  // Сортування (ВСЕРЕДИНІ initInventory!)
   document.querySelectorAll('.inv-sort-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.inv-sort-btn').forEach(b => b.classList.remove('active'));
@@ -224,3 +257,4 @@ function initInventory() {
       renderInventory();
     });
   });
+}
