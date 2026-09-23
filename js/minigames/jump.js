@@ -31,7 +31,7 @@ let gJump = {
   },
 
   platforms: [],
-  cameraY: 0,       // зсув камери (може бути від'ємним)
+  cameraY: 0,       // зсув камери ВНИЗ (>= 0). Чим більше — тим вище гравець.
   maxHeight: 0,
   moves: 0,
   startTime: 0,
@@ -71,16 +71,14 @@ function initJump() {
   gJump.W = cssW;
   gJump.H = cssH;
 
-  // Гравець
+  // Гравець знизу екрана
   gJump.player.x = cssW / 2 - gJump.player.w / 2;
   gJump.player.y = cssH - 120;
   gJump.player.vx = 0;
   gJump.player.vy = JUMP_VELOCITY;
 
-  // Камера — стартова така, щоб гравець знизу був внизу екрана
-  // screenY гравця = p.y - cameraY. Хочемо, щоб він був ~60% від верху (тобто внизу)
-  gJump.cameraY = gJump.player.y - cssH * 0.6;
-  // = (cssH - 120) - 0.6*cssH = 0.4*cssH - 120
+  // Камера = 0 на старті. screenY = worldY + cameraY
+  gJump.cameraY = 0;
 
   gJump.platforms = [];
   gJump.maxHeight = 0;
@@ -95,7 +93,7 @@ function initJump() {
   currentGame.startTime = gJump.startTime;
   currentGame.finished = false;
 
-  // Стартова платформа
+  // Стартова платформа під гравцем
   gJump.platforms.push({
     x: gJump.player.x + gJump.player.w / 2 - JUMP_PLATFORM_W / 2,
     y: gJump.player.y + gJump.player.h,
@@ -103,7 +101,7 @@ function initJump() {
     h: JUMP_PLATFORM_H,
   });
 
-  // Початкові платформи
+  // Початкові платформи вгору (у світових координатах, менше y = вище)
   let lastY = gJump.player.y + gJump.player.h;
   for (let i = 0; i < 12; i++) {
     lastY -= JUMP_PLATFORM_GAP_MIN + Math.random() * (JUMP_PLATFORM_GAP_MAX - JUMP_PLATFORM_GAP_MIN);
@@ -169,19 +167,15 @@ function updateJumpPhysics() {
   }
 
   // ====== КАМЕРА ======
-  // screenY гравця = p.y - cameraY
-  // Хочемо, щоб screenY >= H * 0.4 (гравець не вище 40% екрана)
-  const screenY = p.y - gJump.cameraY;
-  if (screenY < gJump.H * 0.4) {
-    gJump.cameraY = p.y - gJump.H * 0.4;
+  // screenY = worldY + cameraY
+  // Хочемо, щоб screenY гравця >= H * 0.4 (гравець не вище 40% екрана)
+  const playerScreenY = p.y + gJump.cameraY;
+  if (playerScreenY < gJump.H * 0.4) {
+    gJump.cameraY = gJump.H * 0.4 - p.y;
   }
 
   // ====== ВИСОТА ======
-  // Висота = наскільки камера вище стартової позиції
-  // Стартовий cameraY = playerStartY - H*0.6
-  // Висота = стартовий cameraY - поточний cameraY (тобто якщо камера зменшилась — гравець вгору)
-  const startCameraY = (gJump.H - 120) - gJump.H * 0.6;
-  const currentHeight = Math.floor(startCameraY - gJump.cameraY);
+  const currentHeight = Math.floor(gJump.cameraY);
   if (currentHeight > gJump.maxHeight) {
     gJump.maxHeight = currentHeight;
     currentGame.score = gJump.maxHeight;
@@ -196,14 +190,14 @@ function updateJumpPhysics() {
   // Генеруємо нові платформи вгорі
   generateJumpPlatforms();
 
-  // Видаляємо платформи, які вже нижче екрана з запасом
+  // Видаляємо платформи, які вже нижче екрана
   gJump.platforms = gJump.platforms.filter(plat => {
-    const sY = plat.y - gJump.cameraY;
+    const sY = plat.y + gJump.cameraY;
     return sY < gJump.H + 200;
   });
 
   // Падіння нижче екрана — кінець
-  if (p.y - gJump.cameraY > gJump.H + 50) {
+  if (p.y + gJump.cameraY > gJump.H + 50) {
     return jumpGameOver();
   }
 
@@ -212,17 +206,15 @@ function updateJumpPhysics() {
 }
 
 function generateJumpPlatforms() {
-  // Найвища платформа у світі (мінімальний y)
+  // Найвища платформа (мінімальний y)
   let highest = Infinity;
   for (const plat of gJump.platforms) {
     if (plat.y < highest) highest = plat.y;
   }
   if (highest === Infinity) highest = gJump.player.y;
 
-  // Верхня межа у світових координатах — щоб у screenY це було -H*0.5
-  const topLimitWorld = gJump.cameraY - gJump.H * 0.5;
-
-  while (highest > topLimitWorld) {
+  // Генеруємо, поки screenY найвищої > -H*0.5 (тобто вона не вище верхнього краю на пів-екрана)
+  while (highest + gJump.cameraY > -gJump.H * 0.5) {
     highest -= JUMP_PLATFORM_GAP_MIN + Math.random() * (JUMP_PLATFORM_GAP_MAX - JUMP_PLATFORM_GAP_MIN);
     gJump.platforms.push({
       x: Math.random() * (gJump.W - JUMP_PLATFORM_W),
@@ -249,18 +241,18 @@ function renderJump() {
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, W, H);
 
-  // Зірки — повільно рухаються вгору разом з камерою (паралакс 0.3)
+  // Зірки — паралакс
   ctx.fillStyle = 'rgba(245,166,35,0.15)';
   for (let i = 0; i < 30; i++) {
     const sx = (i * 73) % W;
-    let sy = (i * 137 + gJump.cameraY * 0.3) % H;
+    let sy = (i * 137 + gJump.cameraY * 0.4) % H;
     if (sy < 0) sy += H;
     ctx.fillRect(sx, sy, 2, 2);
   }
 
   // Платформи
   for (const plat of gJump.platforms) {
-    const screenY = plat.y - gJump.cameraY;
+    const screenY = plat.y + gJump.cameraY;
     if (screenY < -JUMP_PLATFORM_H || screenY > H) continue;
 
     // Тінь
@@ -287,7 +279,7 @@ function renderJump() {
 
   // Гравець
   const px = gJump.player.x;
-  const py = gJump.player.y - gJump.cameraY;
+  const py = gJump.player.y + gJump.cameraY;
 
   // Тінь
   ctx.fillStyle = 'rgba(0,0,0,0.3)';
