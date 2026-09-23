@@ -48,6 +48,16 @@ function switchTab(tab) {
     curtain.classList.add('hidden');
   }
 
+  // Кнопка чату — тільки на головній
+  const fab = document.getElementById('chat-fab');
+  if (fab) {
+    if (tab === 'home') {
+      fab.classList.remove('hidden');
+    } else {
+      fab.classList.add('hidden');
+    }
+  }
+
   const content = document.getElementById('content');
   if (tab === 'home') {
     content.classList.add('no-scroll');

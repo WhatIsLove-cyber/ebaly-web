@@ -167,6 +167,7 @@ function renderSudokuBoard() {
     <button class="game-sudoku-key" data-num="1">1</button>
     <button class="game-sudoku-key" data-num="2">2</button>
     <button class="game-sudoku-key" data-num="3">3</button>
+    <button class="game-sudoku-key" data-num="4">4</button>
     <button class="game-sudoku-key erase" data-num="0">⌫</button>
   `;
   container.appendChild(keypad);
