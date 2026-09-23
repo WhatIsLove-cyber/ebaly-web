@@ -31,7 +31,7 @@ const TASKS = [
   { id: 'shovel',  name: '🥄 Пошук лопати',          reward: 8,   cooldown: 7200,  stat: null,         type: 'meme',   stickers: [...],
     game_id: 'sudoku',   threshold: 1,   min_moves: 5,  min_time: 10 },
   { id: 'kettle',  name: '☕ Розібратись з чайником', reward: 10,  cooldown: 10800, stat: null,         type: 'meme',   stickers: ["kettle_1.webp","kettle_2.webp","kettle_3.webp","kettle_4.webp","kettle_5.webp"],
-    game_id: 'sudoku',   threshold: 1,   min_moves: 0,  min_time: 20 },
+    game_id: 'jump',     threshold: 1500, min_moves: 10, min_time: 10 },,
 ];
 
 // =========================================================
