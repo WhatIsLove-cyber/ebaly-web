@@ -348,3 +348,102 @@ function initTasks() {
     mgClaim.addEventListener('click', claimMinigameReward);
   }
 }
+
+// =========================================================
+//  ТОП ГРАВЦІВ МІНІ-ГРИ
+// =========================================================
+async function openMinigameTop() {
+  const gameId = currentGame.gameId;
+  if (!gameId) return;
+
+  const overlay = document.getElementById('mg-top-overlay');
+  const body = document.getElementById('mg-top-body');
+  const title = document.getElementById('mg-top-title');
+
+  if (!overlay || !body) return;
+
+  // Заголовок
+  const gameNames = {
+    '2048':     '🧩 2048',
+    'memory':   '🧠 Memory',
+    'reaction': '⚡ Реакція',
+    'snake':    '🐍 Змійка',
+    'sudoku':   '🔲 Судоку',
+    'jump':     '🦘 Стрибун',
+  };
+  if (title) title.textContent = '🏆 ' + (gameNames[gameId] || gameId);
+
+  // Loading
+  body.innerHTML = '<div class="mg-top-loading">Завантаження...</div>';
+  overlay.classList.remove('hidden');
+
+  try {
+    const data = await api("/api/minigame/top?game_id=" + encodeURIComponent(gameId));
+    const top = data.top || [];
+
+    if (top.length === 0) {
+      body.innerHTML = '<div class="mg-top-empty">🏆 Топ ще порожній<br>Стань першим!</div>';
+      return;
+    }
+
+    // Отримуємо свій user_id
+    const myId = tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : null;
+
+    body.innerHTML = '';
+    top.forEach(row => {
+      const div = document.createElement('div');
+      div.className = 'mg-top-row';
+      if (row.place <= 3) div.classList.add('place-' + row.place);
+      if (myId && row.user_id === myId) div.classList.add('me');
+
+      const medal = row.place === 1 ? '🥇' : row.place === 2 ? '🥈' : row.place === 3 ? '🥉' : row.place;
+
+      div.innerHTML = `
+        <div class="mg-top-place">${medal}</div>
+        <div class="mg-top-info">
+          <div class="mg-top-callsign">${escapeHtml(row.callsign)}</div>
+          <div class="mg-top-rank">${escapeHtml(row.rank)}</div>
+          <div class="mg-top-played">🎮 ${row.total_plays} ігор</div>
+        </div>
+        <div class="mg-top-score">
+          ${row.best_score}
+          <div class="mg-top-score-label">очок</div>
+        </div>
+      `;
+
+      // Клік — публічний профіль
+      div.addEventListener('click', () => {
+        closeMinigameTop();
+        openPublicProfile(row.user_id);
+      });
+
+      body.appendChild(div);
+    });
+  } catch (e) {
+    body.innerHTML = `<div class="mg-top-empty">❌ ${escapeHtml(e.message)}</div>`;
+  }
+}
+
+function closeMinigameTop() {
+  const overlay = document.getElementById('mg-top-overlay');
+  if (overlay) overlay.classList.add('hidden');
+}
+
+function initMinigameTop() {
+  const btn = document.getElementById('minigame-top-btn');
+  if (btn) {
+    btn.addEventListener('click', openMinigameTop);
+  }
+
+  const closeBtn = document.getElementById('mg-top-close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeMinigameTop);
+  }
+
+  const overlay = document.getElementById('mg-top-overlay');
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target.id === 'mg-top-overlay') closeMinigameTop();
+    });
+  }
+}

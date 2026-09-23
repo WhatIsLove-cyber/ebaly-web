@@ -835,3 +835,159 @@
 @media (max-width: 360px) {
   .game-jump-canvas-wrap { max-width: 300px; }
 }
+/* =========================================================
+   ТОП ГРАВЦІВ МІНІ-ГРИ
+   ========================================================= */
+.mg-top-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10, 12, 16, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 550; padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+.mg-top-overlay.hidden { display: none; }
+
+.mg-top-modal {
+  background: linear-gradient(180deg, #1a1d21 0%, #2a2e33 100%);
+  border-radius: 20px;
+  padding: 0;
+  max-width: 420px; width: 100%;
+  max-height: 85vh;
+  display: flex; flex-direction: column;
+  border: 3px solid #f5a623;
+  box-shadow: 0 0 40px rgba(245,166,35,0.4), 0 20px 60px rgba(0,0,0,0.6);
+  animation: stickerIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.mg-top-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(245,166,35,0.2);
+  flex-shrink: 0;
+}
+.mg-top-title {
+  font-family: 'Russo One', sans-serif;
+  font-size: 17px;
+  color: #f5a623;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(245,166,35,0.5);
+}
+.mg-top-close {
+  background: none; border: none;
+  color: #888; font-size: 24px;
+  cursor: pointer; padding: 0 6px;
+  line-height: 1; font-family: inherit;
+}
+.mg-top-close:active { color: #f5a623; }
+
+.mg-top-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px;
+}
+
+.mg-top-loading,
+.mg-top-empty {
+  text-align: center;
+  color: #888;
+  padding: 40px 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.mg-top-row {
+  display: flex; align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  background: rgba(42,46,51,0.7);
+  border-radius: 12px;
+  border-left: 4px solid #343a40;
+  transition: all 0.15s;
+}
+.mg-top-row.me {
+  border-left-color: #f5a623;
+  background: rgba(245,166,35,0.12);
+  box-shadow: 0 0 12px rgba(245,166,35,0.2);
+}
+.mg-top-row.place-1 { border-left-color: #ffd700; box-shadow: 0 0 12px rgba(255,215,0,0.3); }
+.mg-top-row.place-2 { border-left-color: #c0c0c0; }
+.mg-top-row.place-3 { border-left-color: #cd7f32; }
+
+.mg-top-place {
+  font-family: 'Russo One', sans-serif;
+  font-size: 20px;
+  color: #f5a623;
+  min-width: 40px;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(245,166,35,0.5);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.mg-top-row.place-1 .mg-top-place { color: #ffd700; }
+.mg-top-row.place-2 .mg-top-place { color: #c0c0c0; }
+.mg-top-row.place-3 .mg-top-place { color: #cd7f32; }
+
+.mg-top-info { flex: 1; min-width: 0; }
+.mg-top-callsign {
+  font-family: 'Russo One', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.3px;
+}
+.mg-top-rank {
+  font-size: 11px;
+  color: #f5a623;
+  margin-top: 2px;
+  white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 0 4px rgba(245,166,35,0.4);
+}
+.mg-top-played {
+  font-size: 10px;
+  color: #666;
+  margin-top: 2px;
+}
+
+.mg-top-score {
+  font-family: 'Russo One', sans-serif;
+  font-size: 18px;
+  color: #6ba8ff;
+  text-shadow: 0 0 8px rgba(107,168,255,0.5);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+.mg-top-score-label {
+  font-size: 9px;
+  color: #666;
+  font-family: -apple-system, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+/* Кнопка Топ у хедері гри */
+.minigame-top-btn {
+  background: rgba(245,166,35,0.15);
+  border: 1.5px solid #f5a623;
+  border-radius: 8px;
+  color: #f5a623;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  cursor: pointer;
+  margin-right: 6px;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.minigame-top-btn:active {
+  transform: scale(0.94);
+  background: rgba(245,166,35,0.3);
+}

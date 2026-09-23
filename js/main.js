@@ -180,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Ініціалізація всіх модулів
   initCreation();
   initTasks();
+  initMinigameTop();
   initInventory();
   initChests();
   initDaily();
