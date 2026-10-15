@@ -3,7 +3,7 @@
 // =========================================================
 
 // API бекенду (Railway)
-const API_URL = "https://web-production-b0ac6.up.railway.app";
+const API_URL = "https://ebaly-game.onrender.com";
 
 // Telegram WebApp
 const tg = window.Telegram.WebApp;
